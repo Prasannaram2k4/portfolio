@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -13,7 +13,8 @@ import {
   SiHtml5, 
   SiCss3, 
   SiTypescript, 
-  SiPostgresql 
+  SiPostgresql,
+  SiOpenjdk 
 } from 'react-icons/si';
 
 const Skills = () => {
@@ -24,9 +25,9 @@ const Skills = () => {
 
   const [activeCategory, setActiveCategory] = useState(0);
   const [displayText, setDisplayText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [typewriterIndex, setTypewriterIndex] = useState(0);
 
-  const skillCategories = [
+  const skillCategories = useMemo(() => [
     {
       title: "Languages",
       description: "Programming languages I'm proficient in for building robust applications",
@@ -36,6 +37,7 @@ const Skills = () => {
       skills: [
         { name: 'JavaScript', icon: SiJavascript },
         { name: 'Python', icon: SiPython },
+        { name: 'Java', icon: SiOpenjdk },
         { name: 'TypeScript', icon: SiTypescript },
         { name: 'HTML5', icon: SiHtml5 },
         { name: 'CSS3', icon: SiCss3 },
@@ -75,29 +77,73 @@ const Skills = () => {
         { name: 'Docker', icon: SiDocker },
       ]
     }
-  ];
+  ], []);
 
   // Typewriter effect for category descriptions
   useEffect(() => {
     const text = skillCategories[activeCategory].description;
-    let index = 0;
     setDisplayText('');
+    setTypewriterIndex(0);
     
     const timer = setInterval(() => {
-      if (index < text.length) {
-        setDisplayText(text.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 50);
+      setTypewriterIndex(prevIndex => {
+        if (prevIndex < text.length) {
+          setDisplayText(text.slice(0, prevIndex + 1));
+          return prevIndex + 1;
+        } else {
+          clearInterval(timer);
+          return prevIndex;
+        }
+      });
+    }, 30);
 
     return () => clearInterval(timer);
   }, [activeCategory, skillCategories]);
 
   return (
-    <section id="skills" className="section-padding bg-dark min-h-screen">
-      <div className="container mx-auto">
+    <motion.section 
+      id="skills" 
+      className="section-padding bg-dark min-h-screen relative overflow-hidden"
+      whileInView={{ 
+        background: [
+          "linear-gradient(45deg, #000000 0%, #111111 50%, #000000 100%)",
+          "linear-gradient(45deg, #111111 0%, #000000 50%, #111111 100%)",
+          "linear-gradient(45deg, #000000 0%, #111111 50%, #000000 100%)"
+        ],
+      }}
+      viewport={{ once: false, amount: 0.1 }}
+      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+    >
+      <div className="container mx-auto relative z-10">
+        {/* Animated background layers */}
+        <motion.div 
+          className="absolute inset-0 -z-10"
+          whileInView={{
+            background: [
+              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.02) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.02) 0%, transparent 50%)",
+              "radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0%, transparent 50%)",
+              "radial-gradient(circle at 50% 80%, rgba(255,255,255,0.02) 0%, transparent 50%)",
+            ]
+          }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+        />
+        
+        <motion.div 
+          className="absolute inset-0 -z-20"
+          whileInView={{
+            opacity: [0.1, 0.3, 0.1],
+            scale: [1, 1.02, 1],
+          }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+        >
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+          <div className="absolute right-0 top-0 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        </motion.div>
         {/* Header */}
         <motion.div className="text-center mb-16">
           <motion.h2 
@@ -124,6 +170,10 @@ const Skills = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ 
+              x: [0, -3, 3, -2, 2, 0],
+            }}
+            viewport={{ once: false, amount: 0.1 }}
           >
             {/* Description Text */}
             <div className="space-y-6">
@@ -146,8 +196,8 @@ const Skills = () => {
                 <span className="inline-block">
                   {displayText}
                   <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+                    animate={{ opacity: typewriterIndex < skillCategories[activeCategory].description.length ? [1, 0] : 1 }}
+                    transition={{ duration: 0.8, repeat: typewriterIndex < skillCategories[activeCategory].description.length ? Infinity : 0, repeatType: "reverse" }}
                     className="text-primary ml-1"
                   >
                     |
@@ -203,6 +253,11 @@ const Skills = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
+            whileInView={{ 
+              x: [0, 3, -3, 2, -2, 0],
+              scale: [1, 1.01, 0.99, 1.01, 0.99, 1]
+            }}
+            viewport={{ once: false, amount: 0.1 }}
             ref={ref}
           >
             <AnimatePresence mode="wait">
@@ -217,16 +272,29 @@ const Skills = () => {
                 {skillCategories[activeCategory].skills.map((skill, index) => (
                   <motion.div
                     key={skill.name}
-                    className="group relative"
+                    className="group relative cursor-pointer"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ 
                       scale: 1.05,
-                      rotateY: 5,
+                      x: [-2, 2, -2, 2, 0],
+                      y: [-1, 1, -1, 1, 0],
+                      transition: { 
+                        x: { duration: 0.3, repeat: 1 },
+                        y: { duration: 0.3, repeat: 1 },
+                        scale: { duration: 0.2 }
+                      }
                     }}
+                    whileInView={{ 
+                      rotate: [0, 1, -1, 0],
+                    }}
+                    viewport={{ once: false, amount: 0.3 }}
                   >
-                    <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${skillCategories[activeCategory].color} border ${skillCategories[activeCategory].borderColor} border-opacity-30 hover:border-opacity-60 transition-all duration-300 group-hover:${skillCategories[activeCategory].glowColor} group-hover:shadow-xl backdrop-blur-sm h-32`}>
+                    <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${skillCategories[activeCategory].color} border ${skillCategories[activeCategory].borderColor} border-opacity-30 hover:border-opacity-60 transition-all duration-300 group-hover:${skillCategories[activeCategory].glowColor} group-hover:shadow-xl group-hover:shadow-white/5 backdrop-blur-sm h-32 overflow-hidden`}>
+                      {/* Subtle glow effect on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-sm" />
+                      
                       {/* Floating glow orb */}
                       <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <motion.div 
@@ -246,9 +314,19 @@ const Skills = () => {
                       {/* Icon */}
                       <div className="flex flex-col items-center justify-center h-full">
                         <motion.div 
-                          className="text-4xl mb-3 text-white group-hover:text-primary transition-colors duration-300"
-                          whileHover={{ rotateY: 180 }}
-                          transition={{ duration: 0.6 }}
+                          className="text-4xl mb-3 text-white group-hover:text-primary transition-colors duration-300 drop-shadow-lg"
+                          whileHover={{ 
+                            x: [-1, 1, -1, 1, 0],
+                            y: [-1, 1, -1, 1, 0],
+                            scale: [1, 1.1, 1],
+                            filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"],
+                            transition: { 
+                              x: { duration: 0.2 },
+                              y: { duration: 0.2 },
+                              scale: { duration: 0.3 },
+                              filter: { duration: 0.3 }
+                            }
+                          }}
                         >
                           {React.createElement(skill.icon, { className: "w-10 h-10" })}
                         </motion.div>
@@ -279,7 +357,7 @@ const Skills = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
