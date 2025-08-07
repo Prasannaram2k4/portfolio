@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaFigma } from 'react-icons/fa';
+import { SiFigma } from 'react-icons/si';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -10,18 +10,18 @@ const Skills = () => {
   });
 
   const skills = [
-    { name: 'JavaScript', icon: 'figma.svg' },
-    { name: 'Python', icon: 'figma.svg' },
-    { name: 'React', icon: 'figma.svg' },
-    { name: 'Node.js', icon: 'figma.svg' },
-    { name: 'Django', icon: 'figma.svg' },
-    { name: 'MongoDB', icon: 'figma.svg' },
-    { name: 'Git', icon: 'figma.svg' },
-    { name: 'Docker', icon: 'figma.svg' },
-    { name: 'HTML5', icon: 'figma.svg' },
-    { name: 'CSS3', icon: 'figma.svg' },
-    { name: 'TypeScript', icon: 'figma.svg' },
-    { name: 'PostgreSQL', icon: 'figma.svg' },
+    { name: 'JavaScript' },
+    { name: 'Python' },
+    { name: 'React' },
+    { name: 'Node.js' },
+    { name: 'Django' },
+    { name: 'MongoDB' },
+    { name: 'Git' },
+    { name: 'Docker' },
+    { name: 'HTML5' },
+    { name: 'CSS3' },
+    { name: 'TypeScript' },
+    { name: 'PostgreSQL' },
   ];
 
   const containerVariants = {
@@ -53,7 +53,7 @@ const Skills = () => {
 
         <motion.div
           ref={ref}
-          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 md:gap-12"
+          className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "show" : "hidden"}
@@ -66,9 +66,9 @@ const Skills = () => {
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="bg-light rounded-lg p-6 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 h-28 relative overflow-hidden">
-                <div className="text-4xl mb-2 text-primary group-hover:scale-90 transition-all duration-300">
-                  <FaFigma className="w-12 h-12 text-primary" />
+              <div className="bg-light rounded-lg p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 h-20 relative overflow-hidden">
+                <div className="text-2xl mb-1 text-primary group-hover:scale-90 transition-all duration-300">
+                  <SiFigma className="w-8 h-8 text-primary" />
                 </div>
                 
                 {/* Overlay on hover */}
