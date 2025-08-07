@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -28,17 +29,49 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log(formData);
-    setFormData({
-      name: '',
-      email: '',
-      message: '',
-    });
-    setIsSubmitting(false);
-    alert("Thanks for your message! I'll get back to you soon.");
+    try {
+      // EmailJS configuration
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+      // Check if EmailJS is configured
+      if (!serviceId || !templateId || !publicKey) {
+        console.warn('EmailJS not configured. Using demo mode.');
+        // Simulate API call for demo
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log('Demo mode - Form data:', formData);
+        alert("Demo mode: EmailJS not configured yet. Please set up your EmailJS credentials to receive real emails.");
+      } else {
+        // Send email using EmailJS
+        const result = await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            to_name: 'Prasannaram R R',
+          },
+          publicKey
+        );
+        
+        console.log('Email sent successfully:', result);
+        alert("Thanks for your message! I'll get back to you soon.");
+      }
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert("Sorry, there was an error sending your message. Please try again or contact me directly at prasannaram978@gmail.com");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
