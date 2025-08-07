@@ -45,12 +45,12 @@ const Contact = () => {
         <motion.section
       id="contact" 
       ref={ref}
-      className="section-padding bg-light-bg dark:bg-dark relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300"
     >
       <div className="container mx-auto relative z-10">
         <motion.div className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-light-primary dark:text-primary"
+            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -59,14 +59,14 @@ const Contact = () => {
             Let's Connect
           </motion.h2>
           <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-transparent via-light-primary dark:via-primary to-transparent mx-auto mb-8"
+            className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent mx-auto mb-8"
             initial={{ width: 0 }}
             whileInView={{ width: inView ? 96 : 0 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 1, delay: 0.5 }}
           />
           <motion.p
-            className="text-light-secondary dark:text-secondary text-lg max-w-2xl mx-auto"
+            className="text-gray-700 dark:text-gray-300 text-lg max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
             viewport={{ once: false, amount: 0.3 }}

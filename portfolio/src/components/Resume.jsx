@@ -136,9 +136,9 @@ const Resume = () => {
                 y: { duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop" }
               }}
             >
-              <div className="bg-light-card dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-light-secondary/20 dark:border-primary/20 shadow-lg">
+              <div className="bg-white dark:bg-gray-800 backdrop-blur-sm rounded-2xl p-8 border border-gray-300 dark:border-gray-600 shadow-lg">
                 <motion.p 
-                  className="text-light-primary dark:text-secondary text-lg leading-relaxed mb-6"
+                  className="text-gray-900 dark:text-gray-300 text-lg leading-relaxed mb-6"
                   whileInView={{
                     opacity: inView ? [0.8, 1, 0.8] : 0.8
                   }}
@@ -151,7 +151,7 @@ const Resume = () => {
                 </motion.p>
 
                 <motion.p 
-                  className="text-light-primary dark:text-secondary text-lg leading-relaxed mb-6"
+                  className="text-gray-900 dark:text-gray-300 text-lg leading-relaxed mb-6"
                   whileInView={{
                     opacity: inView ? [0.8, 1, 0.8] : 0.8
                   }}
@@ -164,7 +164,7 @@ const Resume = () => {
                 </motion.p>
 
                 <motion.p 
-                  className="text-light-primary dark:text-secondary text-lg leading-relaxed mb-8"
+                  className="text-gray-900 dark:text-gray-300 text-lg leading-relaxed mb-8"
                   whileInView={{
                     opacity: inView ? [0.8, 1, 0.8] : 0.8
                   }}
@@ -188,7 +188,7 @@ const Resume = () => {
                   <motion.a
                     href="/resume.pdf" 
                     download
-                    className="inline-flex items-center px-8 py-4 bg-light-primary dark:bg-primary text-white dark:text-dark font-semibold rounded-lg hover:bg-light-secondary dark:hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl"
+                    className="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-lg hover:bg-gray-700 dark:hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl"
                     whileHover={{ 
                       scale: 1.05,
                       boxShadow: "0 10px 30px rgba(0,0,0,0.2)"

@@ -209,7 +209,7 @@ const Skills = () => {
 
             {/* Category Navigation Buttons */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-light-primary dark:text-primary mb-6">Technology Stack:</h4>
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">Technology Stack:</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {skillCategories.map((category, index) => (
                   <motion.button
@@ -230,7 +230,7 @@ const Skills = () => {
                     <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl`} />
                     
                     <div className="relative z-10">
-                      <h5 className="font-bold text-sm text-light-primary dark:text-primary mb-1">{category.title}</h5>
+                      <h5 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{category.title}</h5>
                       <p className="text-xs text-secondary opacity-80">{category.skills.length} Technologies</p>
                     </div>
 
@@ -339,7 +339,7 @@ const Skills = () => {
                         >
                           {React.createElement(skill.icon, { className: "w-10 h-10" })}
                         </motion.div>
-                        <h6 className="text-light-bg dark:text-white text-sm font-semibold text-center group-hover:text-light-primary dark:group-hover:text-primary transition-colors duration-300">
+                        <h6 className="text-gray-900 dark:text-white text-sm font-semibold text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                           {skill.name}
                         </h6>
                       </div>
