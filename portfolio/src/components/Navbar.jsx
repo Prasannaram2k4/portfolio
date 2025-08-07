@@ -25,10 +25,116 @@ const Navbar = ({ scrolled }) => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <motion.a 
           href="#hero"
-          className="text-2xl font-mono font-bold text-primary"
-          whileHover={{ scale: 1.05 }}
+          className="text-2xl font-mono font-bold text-primary relative overflow-hidden"
+          whileHover={{ 
+            scale: 1.1,
+            rotateY: 10,
+            textShadow: "0 0 8px rgba(255,255,255,0.8)"
+          }}
+          animate={{
+            rotateZ: [0, 2, -2, 0],
+            textShadow: [
+              "0 0 0px rgba(255,255,255,0)",
+              "0 0 4px rgba(255,255,255,0.3)",
+              "0 0 8px rgba(255,255,255,0.5)",
+              "0 0 4px rgba(255,255,255,0.3)",
+              "0 0 0px rgba(255,255,255,0)"
+            ]
+          }}
+          transition={{
+            rotateZ: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+            textShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+          }}
         >
-          PR.
+          <span className="relative z-10">
+            <motion.span
+              animate={{
+                color: ["#ffffff", "#e0e0e0", "#ffffff", "#f0f0f0", "#ffffff"]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              P
+            </motion.span>
+            <motion.span
+              animate={{
+                color: ["#ffffff", "#f0f0f0", "#ffffff", "#e0e0e0", "#ffffff"]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.3
+              }}
+            >
+              R
+            </motion.span>
+            <motion.span
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.7, 1, 0.7]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.6
+              }}
+              className="text-primary"
+            >
+              .
+            </motion.span>
+          </span>
+          
+          {/* Animated background glow */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-lg"
+            animate={{
+              x: ["-100%", "100%"],
+              opacity: [0, 0.3, 0]
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Particle effect */}
+          <motion.div
+            className="absolute top-0 left-0 w-1 h-1 bg-white rounded-full"
+            animate={{
+              x: [0, 20, 40, 60, 40, 20, 0],
+              y: [0, -5, -10, -5, 0, -3, 0],
+              opacity: [0, 1, 0.5, 1, 0.5, 1, 0],
+              scale: [0, 1, 0.5, 1, 0.5, 1, 0]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Second particle */}
+          <motion.div
+            className="absolute bottom-0 right-0 w-1 h-1 bg-gray-300 rounded-full"
+            animate={{
+              x: [0, -15, -30, -15, 0],
+              y: [0, 5, 10, 5, 0],
+              opacity: [0, 0.8, 1, 0.8, 0],
+              scale: [0, 0.8, 1, 0.8, 0]
+            }}
+            transition={{
+              duration: 2.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
         </motion.a>
 
         {/* Desktop Menu */}
