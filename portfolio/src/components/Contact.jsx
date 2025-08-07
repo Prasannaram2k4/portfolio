@@ -93,26 +93,26 @@ const Contact = () => {
             }}
             className="space-y-8"
           >
-            <div className="bg-light-card dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-light-secondary/20 dark:border-primary/20 shadow-lg">
-              <h3 className="text-2xl font-bold text-light-primary dark:text-primary mb-8">Get In Touch</h3>
+            <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-600 shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Get In Touch</h3>
               
               <div className="space-y-6">
                 <motion.div 
-                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-light-primary/5 dark:hover:bg-white/5 transition-all duration-300"
+                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300"
                   whileHover={{ scale: 1.02, x: 5 }}
                 >
                   <motion.div 
-                    className="text-light-primary dark:text-primary mt-1 p-3 bg-light-primary/10 dark:bg-primary/10 rounded-full group-hover:bg-light-primary/20 dark:group-hover:bg-primary/20 transition-colors"
+                    className="text-gray-900 dark:text-white mt-1 p-3 bg-gray-100 dark:bg-gray-700 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.3 }}
                   >
                     <FaEnvelope size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="font-semibold text-light-primary dark:text-primary mb-1">Email</h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
                     <a 
                       href="mailto:prasannaram978@gmail.com" 
-                      className="text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors text-lg"
+                      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-lg"
                     >
                       prasannaram978@gmail.com
                     </a>
@@ -120,23 +120,23 @@ const Contact = () => {
                 </motion.div>
                 
                 <motion.div 
-                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-light-primary/5 dark:hover:bg-white/5 transition-all duration-300"
+                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300"
                   whileHover={{ scale: 1.02, x: 5 }}
                 >
                   <motion.div 
-                    className="text-light-primary dark:text-primary mt-1 p-3 bg-light-primary/10 dark:bg-primary/10 rounded-full group-hover:bg-light-primary/20 dark:group-hover:bg-primary/20 transition-colors"
+                    className="text-gray-900 dark:text-white mt-1 p-3 bg-gray-100 dark:bg-gray-700 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.3 }}
                   >
                     <FaLinkedin size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="font-semibold text-light-primary dark:text-primary mb-1">LinkedIn</h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">LinkedIn</h4>
                     <a 
                       href="https://www.linkedin.com/in/prasannaram-r-r-327b09249/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors"
+                      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                     >
                       Connect with me professionally
                     </a>
@@ -144,23 +144,23 @@ const Contact = () => {
                 </motion.div>
                 
                 <motion.div 
-                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-light-primary/5 dark:hover:bg-white/5 transition-all duration-300"
+                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300"
                   whileHover={{ scale: 1.02, x: 5 }}
                 >
                   <motion.div 
-                    className="text-light-primary dark:text-primary mt-1 p-3 bg-light-primary/10 dark:bg-primary/10 rounded-full group-hover:bg-light-primary/20 dark:group-hover:bg-primary/20 transition-colors"
+                    className="text-gray-900 dark:text-white mt-1 p-3 bg-gray-100 dark:bg-gray-700 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.3 }}
                   >
                     <FaGithub size={20} />
                   </motion.div>
                   <div>
-                    <h4 className="font-semibold text-light-primary dark:text-primary mb-1">GitHub</h4>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">GitHub</h4>
                     <a 
                       href="https://github.com/Prasannaram2k4" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors"
+                      className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                     >
                       Check out my projects
                     </a>
@@ -183,22 +183,22 @@ const Contact = () => {
               x: { duration: 0.6, delay: 0.1 }
             }}
           >
-            <div className="bg-light-card dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-light-secondary/20 dark:border-primary/20 shadow-lg">
-              <h3 className="text-2xl font-bold text-light-primary dark:text-primary mb-8">Send a Message</h3>
+            <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-600 shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Send a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.div
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <label htmlFor="name" className="block text-light-primary dark:text-primary mb-3 font-medium">Name</label>
+                  <label htmlFor="name" className="block text-gray-900 dark:text-white mb-3 font-medium">Name</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-light-card dark:bg-gray-900/50 text-light-primary dark:text-primary border border-light-secondary/30 dark:border-primary/30 rounded-lg p-4 focus:outline-none focus:border-light-primary dark:focus:border-primary focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg p-4 focus:outline-none focus:border-gray-900 dark:focus:border-white focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
                     placeholder="Your name"
                     required
                   />
@@ -208,14 +208,14 @@ const Contact = () => {
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <label htmlFor="email" className="block text-light-primary dark:text-primary mb-3 font-medium">Email</label>
+                  <label htmlFor="email" className="block text-gray-900 dark:text-white mb-3 font-medium">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-light-card dark:bg-gray-900/50 text-light-primary dark:text-primary border border-light-secondary/30 dark:border-primary/30 rounded-lg p-4 focus:outline-none focus:border-light-primary dark:focus:border-primary focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg p-4 focus:outline-none focus:border-gray-900 dark:focus:border-white focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -225,14 +225,14 @@ const Contact = () => {
                   whileFocus={{ scale: 1.01 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <label htmlFor="message" className="block text-light-primary dark:text-primary mb-3 font-medium">Message</label>
+                  <label htmlFor="message" className="block text-gray-900 dark:text-white mb-3 font-medium">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows="6"
-                    className="w-full bg-light-card dark:bg-gray-900/50 text-light-primary dark:text-primary border border-light-secondary/30 dark:border-primary/30 rounded-lg p-4 focus:outline-none focus:border-light-primary dark:focus:border-primary focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm resize-none"
+                    className="w-full bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg p-4 focus:outline-none focus:border-gray-900 dark:focus:border-white focus:bg-white dark:focus:bg-gray-800/50 transition-all duration-300 backdrop-blur-sm resize-none"
                     placeholder="Tell me about your project or just say hello!"
                     required
                   ></textarea>
@@ -244,7 +244,7 @@ const Contact = () => {
                   className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 ${
                     isSubmitting 
                       ? 'bg-gray-400 dark:bg-gray-600 text-gray-600 dark:text-gray-300 cursor-not-allowed' 
-                      : 'bg-gradient-to-r from-light-primary to-gray-400 dark:from-primary dark:to-gray-200 text-light-bg dark:text-dark hover:from-gray-400 hover:to-light-primary dark:hover:from-gray-200 dark:hover:to-primary shadow-lg hover:shadow-xl'
+                      : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-gray-200 shadow-lg hover:shadow-xl'
                   }`}
                   whileHover={!isSubmitting ? { 
                     scale: 1.02,
