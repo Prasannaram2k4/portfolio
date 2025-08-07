@@ -7,9 +7,9 @@ const Navbar = ({ scrolled }) => {
 
   const navLinks = [
     { name: 'Home', href: '#hero' },
+    { name: 'About', href: '#resume' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
 

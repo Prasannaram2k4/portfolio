@@ -32,9 +32,9 @@ const App = () => {
       <Navbar scrolled={scrolled} />
       <main>
         <Hero />
+        <Resume />
         <Skills />
         <Projects />
-        <Resume />
         <Contact />
       </main>
       <Footer />

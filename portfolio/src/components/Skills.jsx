@@ -19,8 +19,8 @@ import {
 
 const Skills = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    triggerOnce: false,
+    threshold: 0.2,
   });
 
   const [activeCategory, setActiveCategory] = useState(0);
@@ -168,12 +168,18 @@ const Skills = () => {
           <motion.div 
             className="lg:w-1/2 space-y-8"
             initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             whileInView={{ 
-              x: [0, -3, 3, -2, 2, 0],
+              opacity: inView ? 1 : 0,
+              x: inView ? [0, -3, 3, -2, 2, 0] : [-50, 0],
+              scale: inView ? [1, 1.01, 0.99, 1] : [0.9, 1]
             }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ 
+              opacity: { duration: 0.8 },
+              x: { duration: 2, repeat: inView ? Infinity : 0, repeatType: "loop" },
+              scale: { duration: 3, repeat: inView ? Infinity : 0, repeatType: "reverse" }
+            }}
           >
             {/* Description Text */}
             <div className="space-y-6">
@@ -251,13 +257,18 @@ const Skills = () => {
           <motion.div 
             className="lg:w-1/2"
             initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             whileInView={{ 
-              x: [0, 3, -3, 2, -2, 0],
-              scale: [1, 1.01, 0.99, 1.01, 0.99, 1]
+              opacity: inView ? 1 : 0,
+              x: inView ? [0, 3, -3, 2, -2, 0] : [50, 0],
+              scale: inView ? [1, 1.01, 0.99, 1.01, 0.99, 1] : [0.9, 1]
             }}
-            viewport={{ once: false, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ 
+              opacity: { duration: 0.8 },
+              x: { duration: 2.5, repeat: inView ? Infinity : 0, repeatType: "loop" },
+              scale: { duration: 4, repeat: inView ? Infinity : 0, repeatType: "reverse" }
+            }}
             ref={ref}
           >
             <AnimatePresence mode="wait">
@@ -273,23 +284,26 @@ const Skills = () => {
                   <motion.div
                     key={skill.name}
                     className="group relative cursor-pointer"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      x: [-2, 2, -2, 2, 0],
-                      y: [-1, 1, -1, 1, 0],
-                      transition: { 
-                        x: { duration: 0.3, repeat: 1 },
-                        y: { duration: 0.3, repeat: 1 },
-                        scale: { duration: 0.2 }
-                      }
-                    }}
+                    initial={{ opacity: 0, y: 50, scale: 0.8 }}
                     whileInView={{ 
-                      rotate: [0, 1, -1, 0],
+                      opacity: inView ? 1 : 0, 
+                      y: inView ? 0 : 50, 
+                      scale: inView ? 1 : 0.8,
+                      rotateX: inView ? [0, 2, -2, 0] : 0
                     }}
                     viewport={{ once: false, amount: 0.3 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.1,
+                      rotateX: { duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop" }
+                    }}
+                    whileHover={{ 
+                      scale: 1.08,
+                      y: -5,
+                      rotateX: 5,
+                      rotateY: 5,
+                      transition: { duration: 0.2 }
+                    }}
                   >
                     <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${skillCategories[activeCategory].color} border ${skillCategories[activeCategory].borderColor} border-opacity-30 hover:border-opacity-60 transition-all duration-300 group-hover:${skillCategories[activeCategory].glowColor} group-hover:shadow-xl group-hover:shadow-white/5 backdrop-blur-sm h-32 overflow-hidden`}>
                       {/* Subtle glow effect on hover */}
