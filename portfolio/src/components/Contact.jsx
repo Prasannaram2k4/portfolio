@@ -35,26 +35,33 @@ const Contact = () => {
       const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
+      console.log('EmailJS Config:', { serviceId, templateId, publicKey });
+      console.log('Form data:', formData);
+
       // Check if EmailJS is configured
       if (!serviceId || !templateId || !publicKey) {
         console.warn('EmailJS not configured. Using demo mode.');
-        // Simulate API call for demo
         await new Promise(resolve => setTimeout(resolve, 1000));
         console.log('Demo mode - Form data:', formData);
         alert("Demo mode: EmailJS not configured yet. Please set up your EmailJS credentials to receive real emails.");
       } else {
+        console.log('Sending email with EmailJS...');
+        
+        // Initialize EmailJS first
+        emailjs.init(publicKey);
+        
+        // Prepare template parameters
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'Prasannaram R R',
+        };
+        
+        console.log('Template params:', templateParams);
+        
         // Send email using EmailJS
-        const result = await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_name: 'Prasannaram R R',
-          },
-          publicKey
-        );
+        const result = await emailjs.send(serviceId, templateId, templateParams);
         
         console.log('Email sent successfully:', result);
         alert("Thanks for your message! I'll get back to you soon.");
@@ -67,8 +74,21 @@ const Contact = () => {
         message: '',
       });
     } catch (error) {
-      console.error('Error sending email:', error);
-      alert("Sorry, there was an error sending your message. Please try again or contact me directly at prasannaram978@gmail.com");
+      console.error('Detailed error:', error);
+      console.error('Error message:', error.message);
+      console.error('Error status:', error.status);
+      console.error('Error text:', error.text);
+      
+      // More specific error handling
+      if (error.status === 400) {
+        alert("Invalid request. Please check your form data and try again.");
+      } else if (error.status === 401) {
+        alert("Authentication failed. Please contact the site owner.");
+      } else if (error.status === 402) {
+        alert("EmailJS quota exceeded. Please contact the site owner.");
+      } else {
+        alert("Sorry, there was an error sending your message. Please try again or contact me directly at prasannaram978@gmail.com");
+      }
     } finally {
       setIsSubmitting(false);
     }
