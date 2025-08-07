@@ -45,7 +45,7 @@ const Contact = () => {
         <motion.section
       id="contact" 
       ref={ref}
-      className="section-padding bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-gray-50 dark:bg-black relative overflow-hidden transition-colors duration-300"
     >
       <div className="container mx-auto relative z-10">
         <motion.div className="text-center mb-16">
