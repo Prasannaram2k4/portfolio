@@ -19,71 +19,22 @@ const Navbar = ({ scrolled }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-dark shadow-lg py-2' : 'bg-transparent py-4'
+        scrolled ? 'bg-light-bg/95 dark:bg-dark shadow-lg py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <motion.a 
+                <motion.a 
           href="#hero"
-          className="text-2xl font-mono font-bold text-primary relative overflow-hidden"
+          className="text-2xl font-mono font-bold text-light-primary dark:text-primary"
           whileHover={{ 
             scale: 1.1,
-            rotateY: 10,
-            textShadow: "0 0 8px rgba(255,255,255,0.8)"
-          }}
-          animate={{
-            rotateZ: [0, 2, -2, 0],
-            textShadow: [
-              "0 0 0px rgba(255,255,255,0)",
-              "0 0 4px rgba(255,255,255,0.3)",
-              "0 0 8px rgba(255,255,255,0.5)",
-              "0 0 4px rgba(255,255,255,0.3)",
-              "0 0 0px rgba(255,255,255,0)"
-            ]
-          }}
-          transition={{
-            rotateZ: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            textShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+            textShadow: "0 0 8px rgba(59, 130, 246, 0.8)"
           }}
         >
-          <span className="relative z-10">
+          <span className="relative">
+            PR
             <motion.span
-              animate={{
-                color: ["#ffffff", "#e0e0e0", "#ffffff", "#f0f0f0", "#ffffff"]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              P
-            </motion.span>
-            <motion.span
-              animate={{
-                color: ["#ffffff", "#f0f0f0", "#ffffff", "#e0e0e0", "#ffffff"]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.3
-              }}
-            >
-              R
-            </motion.span>
-            <motion.span
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.7, 1, 0.7]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.6
-              }}
-              className="text-primary"
+              className="text-light-primary dark:text-primary"
             >
               .
             </motion.span>
@@ -147,12 +98,12 @@ const Navbar = ({ scrolled }) => {
             >
               <a 
                 href={link.href}
-                className="text-primary hover:text-secondary transition-colors font-medium tracking-wide"
+                className="text-light-primary dark:text-primary hover:text-light-secondary dark:hover:text-secondary transition-colors font-medium tracking-wide"
               >
                 {link.name}
               </a>
               <motion.div
-                className="h-0.5 bg-primary absolute bottom-0 left-0 right-0"
+                className="h-0.5 bg-light-primary dark:bg-primary absolute bottom-0 left-0 right-0"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
@@ -165,7 +116,7 @@ const Navbar = ({ scrolled }) => {
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-primary text-2xl focus:outline-none"
+          className="md:hidden text-light-primary dark:text-primary text-2xl focus:outline-none"
         >
           {isOpen ? <FaTimes /> : <FaBars />}
         </motion.button>
@@ -178,7 +129,7 @@ const Navbar = ({ scrolled }) => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-dark shadow-lg"
+          className="md:hidden bg-light-bg dark:bg-dark shadow-lg"
         >
           <ul className="container mx-auto px-4 py-4 space-y-4">
             {navLinks.map((link, index) => (
@@ -191,7 +142,7 @@ const Navbar = ({ scrolled }) => {
                 <a 
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block text-primary hover:text-secondary transition-colors py-2 font-medium"
+                  className="block text-light-primary dark:text-primary hover:text-light-secondary dark:hover:text-secondary transition-colors py-2 font-medium"
                 >
                   {link.name}
                 </a>

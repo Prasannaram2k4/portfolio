@@ -103,16 +103,11 @@ const Skills = () => {
   return (
     <motion.section 
       id="skills" 
-      className="section-padding bg-dark min-h-screen relative overflow-hidden"
-      whileInView={{ 
-        background: [
-          "linear-gradient(45deg, #000000 0%, #111111 50%, #000000 100%)",
-          "linear-gradient(45deg, #111111 0%, #000000 50%, #111111 100%)",
-          "linear-gradient(45deg, #000000 0%, #111111 50%, #000000 100%)"
-        ],
-      }}
-      viewport={{ once: false, amount: 0.1 }}
-      transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+      ref={ref}
+      className="section-padding bg-light-bg dark:bg-dark transition-colors duration-300 relative overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
     >
       <div className="container mx-auto relative z-10">
         {/* Animated background layers */}
@@ -147,7 +142,7 @@ const Skills = () => {
         {/* Header */}
         <motion.div className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-primary"
+            className="text-4xl md:text-5xl font-bold mb-6 text-light-primary dark:text-primary"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -214,7 +209,7 @@ const Skills = () => {
 
             {/* Category Navigation Buttons */}
             <div className="space-y-4">
-              <h4 className="text-lg font-semibold text-primary mb-6">Explore Categories:</h4>
+              <h4 className="text-lg font-semibold text-primary mb-6">Technology Stack:</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {skillCategories.map((category, index) => (
                   <motion.button
