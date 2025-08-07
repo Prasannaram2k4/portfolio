@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FaFigma } from 'react-icons/fa';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -9,18 +10,18 @@ const Skills = () => {
   });
 
   const skills = [
-    { name: 'JavaScript', level: 'Advanced', icon: 'javascript.svg' },
-    { name: 'Python', level: 'Advanced', icon: 'python.svg' },
-    { name: 'React', level: 'Intermediate', icon: 'react.svg' },
-    { name: 'Node.js', level: 'Intermediate', icon: 'nodejs.svg' },
-    { name: 'Django', level: 'Advanced', icon: 'django.svg' },
-    { name: 'MongoDB', level: 'Intermediate', icon: 'mongodb.svg' },
-    { name: 'Git', level: 'Intermediate', icon: 'git.svg' },
-    { name: 'Docker', level: 'Beginner', icon: 'docker.svg' },
-    { name: 'HTML5', level: 'Advanced', icon: 'html5.svg' },
-    { name: 'CSS3', level: 'Intermediate', icon: 'css3.svg' },
-    { name: 'TypeScript', level: 'Beginner', icon: 'typescript.svg' },
-    { name: 'PostgreSQL', level: 'Intermediate', icon: 'postgresql.svg' },
+    { name: 'JavaScript', icon: 'figma.svg' },
+    { name: 'Python', icon: 'figma.svg' },
+    { name: 'React', icon: 'figma.svg' },
+    { name: 'Node.js', icon: 'figma.svg' },
+    { name: 'Django', icon: 'figma.svg' },
+    { name: 'MongoDB', icon: 'figma.svg' },
+    { name: 'Git', icon: 'figma.svg' },
+    { name: 'Docker', icon: 'figma.svg' },
+    { name: 'HTML5', icon: 'figma.svg' },
+    { name: 'CSS3', icon: 'figma.svg' },
+    { name: 'TypeScript', icon: 'figma.svg' },
+    { name: 'PostgreSQL', icon: 'figma.svg' },
   ];
 
   const containerVariants = {
@@ -67,16 +68,12 @@ const Skills = () => {
             >
               <div className="bg-light rounded-lg p-6 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 h-28 relative overflow-hidden">
                 <div className="text-4xl mb-2 text-primary group-hover:scale-90 transition-all duration-300">
-                  {/* This is a placeholder for the actual SVG icon */}
-                  <div className="w-12 h-12 bg-primary/20 rounded flex items-center justify-center text-white">
-                    {skill.name[0]}
-                  </div>
+                  <FaFigma className="w-12 h-12 text-primary" />
                 </div>
                 
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-dark bg-opacity-90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <p className="text-primary font-medium text-center">{skill.name}</p>
-                  <p className="text-secondary text-sm mt-1">{skill.level}</p>
                 </div>
               </div>
             </motion.div>
