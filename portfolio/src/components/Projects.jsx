@@ -118,7 +118,7 @@ const Projects = () => {
   return (
     <motion.section 
       id="projects" 
-      className="section-padding bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-gray-100 dark:bg-black relative overflow-hidden transition-colors duration-300"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.1 }}
