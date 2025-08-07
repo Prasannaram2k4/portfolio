@@ -19,7 +19,7 @@ const Navbar = ({ scrolled }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-light-bg/95 dark:bg-dark shadow-lg py-2' : 'bg-transparent py-4'
+        scrolled ? 'bg-white/95 dark:bg-gray-900 shadow-lg py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -129,7 +129,7 @@ const Navbar = ({ scrolled }) => {
           animate={{ opacity: 1, height: 'auto' }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.3 }}
-          className="md:hidden bg-light-bg dark:bg-dark shadow-lg"
+          className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
         >
           <ul className="container mx-auto px-4 py-4 space-y-4">
             {navLinks.map((link, index) => (

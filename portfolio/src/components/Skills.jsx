@@ -104,7 +104,7 @@ const Skills = () => {
     <motion.section 
       id="skills" 
       ref={ref}
-      className="section-padding bg-light-bg dark:bg-dark transition-colors duration-300 relative overflow-hidden"
+      className="section-padding bg-white dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}

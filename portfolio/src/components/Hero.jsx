@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Hero = () => {
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center section-padding bg-light-bg dark:bg-dark transition-colors duration-300">
+    <section id="hero" className="min-h-screen flex items-center justify-center section-padding bg-white dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-center text-center">
           <motion.div
