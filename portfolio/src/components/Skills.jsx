@@ -69,9 +69,9 @@ const Skills = () => {
     {
       title: "Tools & DevOps",
       description: "Essential tools and technologies for modern development workflow",
-      color: "from-gray-800 to-black",
-      glowColor: "shadow-white/10",
-      borderColor: "border-gray-600",
+      color: "from-gray-600 to-gray-800",
+      glowColor: "shadow-gray-400/20",
+      borderColor: "border-gray-400",
       skills: [
         { name: 'Git', icon: SiGit },
         { name: 'Docker', icon: SiDocker },
