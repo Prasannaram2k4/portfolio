@@ -1,7 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { SiFigma } from 'react-icons/si';
+import { 
+  SiJavascript, 
+  SiPython, 
+  SiReact, 
+  SiNodedotjs, 
+  SiDjango, 
+  SiMongodb, 
+  SiGit, 
+  SiDocker, 
+  SiHtml5, 
+  SiCss3, 
+  SiTypescript, 
+  SiPostgresql 
+} from 'react-icons/si';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -10,18 +23,18 @@ const Skills = () => {
   });
 
   const skills = [
-    { name: 'JavaScript' },
-    { name: 'Python' },
-    { name: 'React' },
-    { name: 'Node.js' },
-    { name: 'Django' },
-    { name: 'MongoDB' },
-    { name: 'Git' },
-    { name: 'Docker' },
-    { name: 'HTML5' },
-    { name: 'CSS3' },
-    { name: 'TypeScript' },
-    { name: 'PostgreSQL' },
+    { name: 'JavaScript', icon: SiJavascript },
+    { name: 'Python', icon: SiPython },
+    { name: 'React', icon: SiReact },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'Django', icon: SiDjango },
+    { name: 'MongoDB', icon: SiMongodb },
+    { name: 'Git', icon: SiGit },
+    { name: 'Docker', icon: SiDocker },
+    { name: 'HTML5', icon: SiHtml5 },
+    { name: 'CSS3', icon: SiCss3 },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'PostgreSQL', icon: SiPostgresql },
   ];
 
   const containerVariants = {
@@ -68,7 +81,7 @@ const Skills = () => {
             >
               <div className="bg-light rounded-lg p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 h-20 relative overflow-hidden">
                 <div className="text-2xl mb-1 text-primary group-hover:scale-90 transition-all duration-300">
-                  <SiFigma className="w-8 h-8 text-primary" />
+                  {React.createElement(skill.icon, { className: "w-8 h-8 text-primary" })}
                 </div>
                 
                 {/* Overlay on hover */}
