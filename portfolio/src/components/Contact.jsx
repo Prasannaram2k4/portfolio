@@ -45,7 +45,7 @@ const Contact = () => {
         <motion.section
       id="contact" 
       ref={ref}
-      className="section-padding bg-blue-50 dark:bg-red-900 relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-white dark:bg-black relative overflow-hidden transition-colors duration-300"
     >
       <div className="container mx-auto relative z-10">
         <motion.div className="text-center mb-16">
@@ -56,7 +56,7 @@ const Contact = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
           >
-            Let's Connect [CONTACT-DEBUG: THEME TEST]
+            Let's Connect
           </motion.h2>
           <motion.div
             className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent mx-auto mb-8"

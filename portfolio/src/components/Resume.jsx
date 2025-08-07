@@ -12,7 +12,7 @@ const Resume = () => {
   return (
     <motion.section 
       id="resume" 
-      className="section-padding bg-gray-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-gray-100 dark:bg-black relative overflow-hidden transition-colors duration-300"
     >
       {/* Animated background elements - removed to fix theme consistency */}
 
