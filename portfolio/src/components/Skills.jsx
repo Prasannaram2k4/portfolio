@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   SiJavascript, 
@@ -22,13 +22,17 @@ const Skills = () => {
     threshold: 0.1,
   });
 
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const skillCategories = [
     {
       title: "Languages",
-      description: "Programming languages I'm proficient in",
-      color: "from-blue-500 to-blue-700",
-      textColor: "text-blue-100",
-      borderColor: "border-blue-400",
+      description: "Programming languages I'm proficient in for building robust applications",
+      color: "from-gray-700 to-gray-900",
+      glowColor: "shadow-gray-500/20",
+      borderColor: "border-gray-500",
       skills: [
         { name: 'JavaScript', icon: SiJavascript },
         { name: 'Python', icon: SiPython },
@@ -39,10 +43,10 @@ const Skills = () => {
     },
     {
       title: "Frameworks & Libraries",
-      description: "Frontend and backend frameworks I work with",
-      color: "from-green-500 to-green-700",
-      textColor: "text-green-100",
-      borderColor: "border-green-400",
+      description: "Modern frameworks and libraries I use for efficient development",
+      color: "from-gray-600 to-gray-800",
+      glowColor: "shadow-gray-400/20",
+      borderColor: "border-gray-400",
       skills: [
         { name: 'React', icon: SiReact },
         { name: 'Node.js', icon: SiNodedotjs },
@@ -51,10 +55,10 @@ const Skills = () => {
     },
     {
       title: "Databases",
-      description: "Database technologies I use for data storage",
-      color: "from-purple-500 to-purple-700",
-      textColor: "text-purple-100",
-      borderColor: "border-purple-400",
+      description: "Database technologies for reliable data storage and management",
+      color: "from-gray-500 to-gray-700",
+      glowColor: "shadow-gray-300/20",
+      borderColor: "border-gray-300",
       skills: [
         { name: 'MongoDB', icon: SiMongodb },
         { name: 'PostgreSQL', icon: SiPostgresql },
@@ -62,10 +66,10 @@ const Skills = () => {
     },
     {
       title: "Tools & DevOps",
-      description: "Development tools and deployment technologies",
-      color: "from-orange-500 to-orange-700",
-      textColor: "text-orange-100",
-      borderColor: "border-orange-400",
+      description: "Essential tools and technologies for modern development workflow",
+      color: "from-gray-800 to-black",
+      glowColor: "shadow-white/10",
+      borderColor: "border-gray-600",
       skills: [
         { name: 'Git', icon: SiGit },
         { name: 'Docker', icon: SiDocker },
@@ -73,90 +77,207 @@ const Skills = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  // Typewriter effect for category descriptions
+  useEffect(() => {
+    const text = skillCategories[activeCategory].description;
+    let index = 0;
+    setDisplayText('');
+    
+    const timer = setInterval(() => {
+      if (index < text.length) {
+        setDisplayText(text.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 50);
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 },
-  };
+    return () => clearInterval(timer);
+  }, [activeCategory, skillCategories]);
 
   return (
-    <section id="skills" className="section-padding bg-dark">
+    <section id="skills" className="section-padding bg-dark min-h-screen">
       <div className="container mx-auto">
+        {/* Header */}
         <motion.div className="text-center mb-16">
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-4 text-primary"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-4xl md:text-5xl font-bold mb-6 text-primary"
+            initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
             My Technical Skills
           </motion.h2>
-          <motion.p 
-            className="text-secondary text-lg max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Here's a comprehensive overview of my technical expertise, organized by category. 
-            I'm passionate about full-stack development and continuously learning new technologies.
-          </motion.p>
+          <motion.div
+            className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8"
+            initial={{ width: 0 }}
+            animate={inView ? { width: 96 } : {}}
+            transition={{ duration: 1, delay: 0.5 }}
+          />
         </motion.div>
 
-        <motion.div
-          ref={ref}
-          className="space-y-12"
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "show" : "hidden"}
-        >
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              variants={itemVariants}
-              className="relative"
-            >
-              {/* Category Header */}
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-primary mb-2">{category.title}</h3>
-                <p className="text-secondary">{category.description}</p>
-              </div>
-
-              {/* Skills Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                {category.skills.map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative group"
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+        {/* Main Content */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Left Sidebar - Text and Category Buttons */}
+          <motion.div 
+            className="lg:w-1/2 space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            {/* Description Text */}
+            <div className="space-y-6">
+              <motion.h3 
+                className="text-2xl font-bold text-primary"
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                {skillCategories[activeCategory].title}
+              </motion.h3>
+              
+              <motion.div 
+                className="text-secondary text-lg leading-relaxed min-h-[4rem]"
+                key={activeCategory}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="inline-block">
+                  {displayText}
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+                    className="text-primary ml-1"
                   >
-                    <div className={`bg-gradient-to-br ${category.color} rounded-lg p-4 flex flex-col items-center justify-center hover:shadow-lg transition-all duration-300 h-24 relative overflow-hidden border ${category.borderColor} border-opacity-50`}>
-                      <div className="text-2xl mb-2 group-hover:scale-110 transition-all duration-300">
-                        {React.createElement(skill.icon, { className: `w-8 h-8 ${category.textColor}` })}
+                    |
+                  </motion.span>
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Category Navigation Buttons */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-primary mb-6">Explore Categories:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {skillCategories.map((category, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => setActiveCategory(index)}
+                    className={`relative p-4 rounded-xl border-2 transition-all duration-300 text-left group overflow-hidden ${
+                      activeCategory === index
+                        ? `${category.borderColor} ${category.glowColor} shadow-lg bg-gradient-to-r ${category.color}`
+                        : 'border-gray-600 hover:border-gray-400 hover:shadow-gray-400/10 hover:shadow-lg'
+                    }`}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  >
+                    {/* Glow effect */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-xl`} />
+                    
+                    <div className="relative z-10">
+                      <h5 className="font-bold text-sm text-primary mb-1">{category.title}</h5>
+                      <p className="text-xs text-secondary opacity-80">{category.skills.length} Technologies</p>
+                    </div>
+
+                    {/* Active indicator */}
+                    {activeCategory === index && (
+                      <motion.div
+                        className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r"
+                        layoutId="activeIndicator"
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Side - Skills Display */}
+          <motion.div 
+            className="lg:w-1/2"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            ref={ref}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-6"
+              >
+                {skillCategories[activeCategory].skills.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    className="group relative"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      rotateY: 5,
+                    }}
+                  >
+                    <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${skillCategories[activeCategory].color} border ${skillCategories[activeCategory].borderColor} border-opacity-30 hover:border-opacity-60 transition-all duration-300 group-hover:${skillCategories[activeCategory].glowColor} group-hover:shadow-xl backdrop-blur-sm h-32`}>
+                      {/* Floating glow orb */}
+                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <motion.div 
+                          className="w-full h-full bg-primary rounded-full"
+                          animate={{ 
+                            scale: [1, 1.5, 1],
+                            opacity: [0.5, 1, 0.5]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
                       </div>
-                      <p className={`text-xs font-medium ${category.textColor} text-center`}>{skill.name}</p>
-                      
-                      {/* Hover Effect */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${category.color} bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm`}>
-                        <p className={`${category.textColor} font-bold text-sm text-center px-2`}>{skill.name}</p>
+
+                      {/* Icon */}
+                      <div className="flex flex-col items-center justify-center h-full">
+                        <motion.div 
+                          className="text-4xl mb-3 text-white group-hover:text-primary transition-colors duration-300"
+                          whileHover={{ rotateY: 180 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          {React.createElement(skill.icon, { className: "w-10 h-10" })}
+                        </motion.div>
+                        <h6 className="text-white text-sm font-semibold text-center group-hover:text-primary transition-colors duration-300">
+                          {skill.name}
+                        </h6>
+                      </div>
+
+                      {/* Animated border */}
+                      <div className="absolute inset-0 rounded-2xl border-2 border-primary opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl border-2 border-primary"
+                          initial={{ rotate: 0 }}
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                          style={{
+                            background: 'conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent)',
+                            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                            maskComposite: 'xor'
+                          }}
+                        />
                       </div>
                     </div>
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
