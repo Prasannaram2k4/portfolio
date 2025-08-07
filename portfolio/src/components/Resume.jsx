@@ -12,7 +12,7 @@ const Resume = () => {
   return (
     <motion.section 
       id="resume" 
-      className="section-padding bg-light-bg dark:bg-dark relative overflow-hidden transition-colors duration-300"
+      className="section-padding bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300"
       whileInView={{
         background: [
           "linear-gradient(to bottom right, #f9fafb, #e5e7eb)",
@@ -49,10 +49,10 @@ const Resume = () => {
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-light-primary dark:text-primary">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
               About Me
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-8"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-blue-600 to-transparent mx-auto mb-8"></div>
           </motion.div>
 
           {/* Main Content Grid */}
@@ -76,7 +76,7 @@ const Resume = () => {
             >
               {/* Photo Placeholder */}
               <motion.div 
-                className="w-64 h-64 mx-auto mb-8 bg-light-secondary/20 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 rounded-full border-4 border-light-primary/30 dark:border-primary/30 flex items-center justify-center relative overflow-hidden group"
+                className="w-64 h-64 mx-auto mb-8 bg-gray-200 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 rounded-full border-4 border-gray-400 dark:border-blue-500 flex items-center justify-center relative overflow-hidden group"
                 whileHover={{ 
                   scale: 1.05,
                   borderColor: "rgba(0,0,0,0.6)",
@@ -84,17 +84,17 @@ const Resume = () => {
                 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="text-6xl text-light-primary dark:text-primary/60 font-bold">PR</div>
+                <div className="text-6xl text-gray-900 dark:text-blue-400 font-bold">PR</div>
                 
                 {/* Animated border glow */}
                 <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-light-primary dark:border-primary opacity-0 group-hover:opacity-50"
+                  className="absolute inset-0 rounded-full border-2 border-gray-900 dark:border-blue-500 opacity-0 group-hover:opacity-50"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                 />
                 
                 {/* Photo placeholder text */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-light-secondary dark:text-primary/40 bg-light-secondary/20 dark:bg-dark/80 px-2 py-1 rounded">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
                   Photo Space
                 </div>
               </motion.div>
@@ -107,13 +107,13 @@ const Resume = () => {
                 viewport={{ once: false }}
                 transition={{ duration: 2, repeat: inView ? Infinity : 0, repeatType: "loop" }}
               >
-                <h1 className="text-3xl md:text-4xl font-bold text-light-primary dark:text-primary mb-4">
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                   Prasannaram R R
                 </h1>
-                <div className="text-lg text-light-primary/80 dark:text-primary/80 mb-6 leading-relaxed">
+                <div className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                   Full-Stack Developer | Backend Focused
                 </div>
-                <div className="text-sm text-light-secondary dark:text-secondary mb-8 space-y-1">
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-8 space-y-1">
                   <div>Django • Django REST Framework • Python</div>
                   <div>React.js • REST APIs • Cloud</div>
                 </div>

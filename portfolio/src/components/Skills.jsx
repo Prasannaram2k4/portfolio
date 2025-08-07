@@ -142,7 +142,7 @@ const Skills = () => {
         {/* Header */}
         <motion.div className="text-center mb-16">
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-light-primary dark:text-primary"
+            className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -179,7 +179,7 @@ const Skills = () => {
             {/* Description Text */}
             <div className="space-y-6">
               <motion.h3 
-                className="text-2xl font-bold text-primary"
+                className="text-2xl font-bold text-gray-900 dark:text-white"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -188,7 +188,7 @@ const Skills = () => {
               </motion.h3>
               
               <motion.div 
-                className="text-secondary text-lg leading-relaxed min-h-[4rem]"
+                className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed min-h-[4rem]"
                 key={activeCategory}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -199,7 +199,7 @@ const Skills = () => {
                   <motion.span
                     animate={{ opacity: typewriterIndex < skillCategories[activeCategory].description.length ? [1, 0] : 1 }}
                     transition={{ duration: 0.8, repeat: typewriterIndex < skillCategories[activeCategory].description.length ? Infinity : 0, repeatType: "reverse" }}
-                    className="text-primary ml-1"
+                    className="text-blue-600 dark:text-blue-400 ml-1"
                   >
                     |
                   </motion.span>
@@ -231,13 +231,13 @@ const Skills = () => {
                     
                     <div className="relative z-10">
                       <h5 className="font-bold text-sm text-gray-900 dark:text-white mb-1">{category.title}</h5>
-                      <p className="text-xs text-secondary opacity-80">{category.skills.length} Technologies</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 opacity-80">{category.skills.length} Technologies</p>
                     </div>
 
                     {/* Active indicator */}
                     {activeCategory === index && (
                       <motion.div
-                        className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r"
+                        className="absolute left-0 top-0 bottom-0 w-1 bg-blue-600 rounded-r"
                         layoutId="activeIndicator"
                         transition={{ duration: 0.3 }}
                       />
@@ -305,9 +305,9 @@ const Skills = () => {
                       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-sm" />
                       
                       {/* Floating glow orb */}
-                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <motion.div 
-                          className="w-full h-full bg-primary rounded-full"
+                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <motion.div
+                          className="w-full h-full bg-blue-600 rounded-full"
                           animate={{ 
                             scale: [1, 1.5, 1],
                             opacity: [0.5, 1, 0.5]
@@ -323,7 +323,7 @@ const Skills = () => {
                       {/* Icon */}
                       <div className="flex flex-col items-center justify-center h-full">
                         <motion.div 
-                          className="text-4xl mb-3 text-white group-hover:text-primary transition-colors duration-300 drop-shadow-lg"
+                          className="text-4xl mb-3 text-white group-hover:text-blue-400 transition-colors duration-300 drop-shadow-lg"
                           whileHover={{ 
                             x: [-1, 1, -1, 1, 0],
                             y: [-1, 1, -1, 1, 0],
