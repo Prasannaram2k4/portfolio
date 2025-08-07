@@ -345,9 +345,9 @@ const Skills = () => {
                       </div>
 
                       {/* Animated border */}
-                      <div className="absolute inset-0 rounded-2xl border-2 border-primary opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+                      <div className="absolute inset-0 rounded-2xl border-2 border-blue-500 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
                         <motion.div
-                          className="absolute inset-0 rounded-2xl border-2 border-primary"
+                          className="absolute inset-0 rounded-2xl border-2 border-blue-500"
                           initial={{ rotate: 0 }}
                           animate={{ rotate: 360 }}
                           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}

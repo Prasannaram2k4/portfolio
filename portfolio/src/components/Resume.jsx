@@ -13,31 +13,8 @@ const Resume = () => {
     <motion.section 
       id="resume" 
       className="section-padding bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300"
-      whileInView={{
-        background: [
-          "linear-gradient(to bottom right, #f9fafb, #e5e7eb)",
-          "linear-gradient(to bottom right, #e5e7eb, #f9fafb)",
-          "linear-gradient(to bottom right, #f9fafb, #e5e7eb)"
-        ],
-      }}
-      viewport={{ once: false, amount: 0.1 }}
-      transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-      style={{
-        background: 'var(--tw-gradient-stops)',
-      }}
     >
-      {/* Animated background elements */}
-      <motion.div 
-        className="absolute inset-0 -z-10"
-        animate={{
-          background: [
-            "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.02) 0%, transparent 50%)",
-            "radial-gradient(circle at 75% 75%, rgba(255,255,255,0.02) 0%, transparent 50%)",
-            "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 50%)",
-          ]
-        }}
-        transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
-      />
+      {/* Animated background elements - removed to fix theme consistency */}
 
       <div className="container mx-auto">
         <div className="max-w-6xl mx-auto">
