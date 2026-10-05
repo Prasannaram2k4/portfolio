@@ -31,10 +31,10 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <h2 className="text-2xl md:text-3xl font-medium mb-2 text-light-secondary dark:text-secondary">
-              Full-Stack Developer | Backend Focused
+              Aspiring AI Engineer
             </h2>
             <p className="text-lg text-light-secondary dark:text-secondary mb-4">
-              Coimbatore, India
+              Coimbatore, India · B.E. Computer Science, 2022–2026
             </p>
             <motion.p 
               className="text-light-primary dark:text-primary text-lg font-medium mb-8"
@@ -42,7 +42,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Let's build something great – just hit send 📬
+              AI systems, full-stack products, and useful automation.
             </motion.p>
           </motion.div>
           
@@ -73,6 +73,16 @@ const Hero = () => {
               <FaLinkedin size={32} />
             </motion.a>
           </motion.div>
+
+          <motion.a
+            href="mailto:prasannaram978@gmail.com"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-5 text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors"
+          >
+            prasannaram978@gmail.com · +91 8778557651
+          </motion.a>
           
           <motion.div
             initial={{ y: 20, opacity: 0 }}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaFileDownload } from 'react-icons/fa';
 
 const Resume = () => {
   const [ref, inView] = useInView({
@@ -72,7 +71,7 @@ const Resume = () => {
                 
                 {/* Photo placeholder text */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-gray-600 dark:text-blue-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                  Photo Space
+                  Aspiring AI Engineer
                 </div>
               </motion.div>
 
@@ -88,11 +87,12 @@ const Resume = () => {
                   Prasannaram R R
                 </h1>
                 <div className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                  Full-Stack Developer | Backend Focused
+                  Aspiring AI Engineer
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400 mb-8 space-y-1">
-                  <div>Django • Django REST Framework • Python</div>
-                  <div>React.js • REST APIs • Cloud</div>
+                  <div>B.E. Computer Science and Engineering</div>
+                  <div>VSB College of Engineering Technical Campus</div>
+                  <div>2022–2026 · CGPA 8.5/10</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -122,9 +122,8 @@ const Resume = () => {
                   viewport={{ once: false }}
                   transition={{ duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop" }}
                 >
-                  I'm a Computer Science student passionate about backend and full-stack development. 
-                  I specialize in designing scalable systems and building clean, maintainable code using 
-                  Python and modern frameworks like Django and Django REST Framework.
+                  I am a Computer Science and Engineering student focused on AI engineering and full-stack development.
+                  I build practical applications around LLMs, retrieval-augmented generation, agentic workflows, and reliable APIs.
                 </motion.p>
 
                 <motion.p 
@@ -135,9 +134,8 @@ const Resume = () => {
                   viewport={{ once: false }}
                   transition={{ duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop", delay: 1 }}
                 >
-                  My experience spans creating RESTful APIs, implementing JWT authentication, managing 
-                  databases like MongoDB, and deploying applications on platforms like AWS, Render, and Vercel. 
-                  On the frontend, I work with React.js to build responsive, user-focused interfaces.
+                  As a Software Engineering Intern at Evalbench (June–October 2025), I built AI-powered web applications with React,
+                  improved REST API performance, and integrated external LLM providers into product workflows using Agile practices.
                 </motion.p>
 
                 <motion.p 
@@ -148,34 +146,15 @@ const Resume = () => {
                   viewport={{ once: false }}
                   transition={{ duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop", delay: 2 }}
                 >
-                  I approach development with a problem-solving mindset, focusing on writing efficient code 
-                  that's easy to scale and maintain. I enjoy learning new technologies and continuously 
-                  improving the performance and usability of the applications I build.
+                  My work includes autonomous browser-based lead discovery, document Q&A with vector search, resume-to-job matching,
+                  and financial analytics. I enjoy taking a new technical idea from a focused proof of concept to a usable product.
                 </motion.p>
 
-                {/* Resume Download Button */}
-                <motion.div 
-                  className="flex justify-start"
-                  whileInView={{
-                    y: inView ? [0, -3, 3, 0] : 0
-                  }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 2, repeat: inView ? Infinity : 0, repeatType: "loop" }}
-                >
-                  <motion.a
-                    href="/resume.pdf" 
-                    download
-                    className="inline-flex items-center px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-lg hover:bg-gray-700 dark:hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 10px 30px rgba(0,0,0,0.2)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaFileDownload className="mr-3" size={20} /> 
-                    Download Resume
-                  </motion.a>
-                </motion.div>
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Software Engineering Intern</h3>
+                  <p className="text-gray-700 dark:text-gray-300">Evalbench · AI &amp; Full Stack Development · June–October 2025</p>
+                  <p className="text-gray-600 dark:text-gray-400 mt-2">React.js, REST APIs, external LLM integrations, and Agile development.</p>
+                </div>
               </div>
             </motion.div>
           </div>

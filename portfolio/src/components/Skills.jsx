@@ -10,7 +10,6 @@ import {
   SiMongodb, 
   SiGit, 
   SiDocker, 
-  SiHtml5, 
   SiCss3, 
   SiTypescript, 
   SiPostgresql,
@@ -35,24 +34,49 @@ const Skills = () => {
       glowColor: "shadow-gray-500/20",
       borderColor: "border-gray-500",
       skills: [
-        { name: 'JavaScript', icon: SiJavascript },
         { name: 'Python', icon: SiPython },
+        { name: 'JavaScript (ES6+)', icon: SiJavascript },
         { name: 'Java', icon: SiOpenjdk },
-        { name: 'TypeScript', icon: SiTypescript },
-        { name: 'HTML5', icon: SiHtml5 },
-        { name: 'CSS3', icon: SiCss3 },
+        { name: 'C++', icon: SiOpenjdk },
+        { name: 'SQL', icon: SiPostgresql },
       ]
     },
     {
       title: "Frameworks & Libraries",
-      description: "Modern frameworks and libraries I use for efficient development",
+      description: "Web frameworks and libraries for building full-stack applications and APIs",
       color: "from-gray-600 to-gray-800",
       glowColor: "shadow-gray-400/20",
       borderColor: "border-gray-400",
       skills: [
-        { name: 'React', icon: SiReact },
+        { name: 'React.js', icon: SiReact },
         { name: 'Node.js', icon: SiNodedotjs },
+        { name: 'Express.js', icon: SiNodedotjs },
+        { name: 'FastAPI', icon: SiPython },
+        { name: 'Flask', icon: SiPython },
         { name: 'Django', icon: SiDjango },
+      ]
+    },
+    {
+      title: "AI & Machine Learning",
+      description: "Applied AI skills spanning retrieval, language models, NLP, and intelligent automation",
+      color: "from-gray-500 to-gray-700",
+      glowColor: "shadow-gray-300/20",
+      borderColor: "border-gray-300",
+      skills: [
+        { name: 'RAG Pipelines', icon: SiPython },
+        { name: 'LLM Integration', icon: SiPython },
+        { name: 'Agentic AI', icon: SiPython },
+        { name: 'Prompt Engineering', icon: SiPython },
+        { name: 'NLP', icon: SiPython },
+        { name: 'Vector Search', icon: SiPython },
+        { name: 'Hugging Face', icon: SiPython },
+        { name: 'Fine-tuning', icon: SiPython },
+        { name: 'Embeddings', icon: SiPython },
+        { name: 'LangChain', icon: SiPython },
+        { name: 'FAISS', icon: SiPython },
+        { name: 'scikit-learn', icon: SiPython },
+        { name: 'NumPy', icon: SiPython },
+        { name: 'Pandas', icon: SiPython },
       ]
     },
     {
@@ -64,17 +88,40 @@ const Skills = () => {
       skills: [
         { name: 'MongoDB', icon: SiMongodb },
         { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'MySQL', icon: SiPostgresql },
+        { name: 'Firebase', icon: SiReact },
+        { name: 'Redis', icon: SiMongodb },
       ]
     },
     {
-      title: "Tools & DevOps",
-      description: "Essential tools and technologies for modern development workflow",
+      title: "Cloud & DevOps",
+      description: "Deployment, infrastructure, and CI/CD tools used to ship and operate applications",
+      color: "from-gray-600 to-gray-800",
+      glowColor: "shadow-gray-400/20",
+      borderColor: "border-gray-400",
+      skills: [
+        { name: 'Docker', icon: SiDocker },
+        { name: 'GitHub Actions', icon: SiGit },
+        { name: 'Vercel', icon: SiReact },
+        { name: 'Render', icon: SiNodedotjs },
+        { name: 'Nginx', icon: SiNodedotjs },
+        { name: 'AWS EC2', icon: SiDocker },
+        { name: 'AWS S3', icon: SiDocker },
+      ]
+    },
+    {
+      title: "Tools & Workflow",
+      description: "Everyday development tools for testing, browser automation, design, and collaboration",
       color: "from-gray-600 to-gray-800",
       glowColor: "shadow-gray-400/20",
       borderColor: "border-gray-400",
       skills: [
         { name: 'Git', icon: SiGit },
-        { name: 'Docker', icon: SiDocker },
+        { name: 'Postman', icon: SiJavascript },
+        { name: 'Playwright', icon: SiReact },
+        { name: 'Figma', icon: SiCss3 },
+        { name: 'Linux', icon: SiOpenjdk },
+        { name: 'VS Code', icon: SiTypescript },
       ]
     }
   ], []);

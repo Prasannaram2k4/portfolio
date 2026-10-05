@@ -9,41 +9,72 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "MarketPulse Pro",
-      description: "Advanced stock market analysis platform with real-time data visualization",
-      fullDescription: "MarketPulse Pro is a comprehensive stock market analysis platform that provides real-time market data, advanced charting capabilities, and portfolio management tools. Built with React and integrated with multiple financial APIs, it offers users professional-grade analytics for informed trading decisions.",
+      title: "AI Lead Discovery Agent",
+      description: "An autonomous scraping and intelligence pipeline that discovers and qualifies leads.",
+      fullDescription: "Built a browser-automation agent using Playwright and Llama 3.3 70B to discover leads, classify fields, and structure results as JSON without manual intervention. Delivered a production-ready proof of concept in 10 days while learning the APIs and browser automation from scratch.",
       image: "project1-placeholder.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Chart.js", "WebSocket"],
-      icons: [<FaReact />, <FaNodeJs />, <SiMongodb />, <SiExpress />],
+      technologies: ["Python", "Playwright", "Llama 3.3 70B", "REST APIs", "Browser Automation"],
+      icons: [<FaPython />, <FaDatabase />, <FaGithub />, <FaExternalLinkAlt />],
       github: "https://github.com/Prasannaram2k4",
-      demo: "https://project-demo.com",
       features: [
-        "Real-time stock price updates",
-        "Advanced charting and technical analysis",
-        "Portfolio tracking and management",
-        "Market news integration",
-        "Custom watchlists and alerts"
+        "Autonomous lead discovery through Playwright browser automation",
+        "LLM-powered field classification and qualification",
+        "Structured lead extraction into JSON",
+        "Modular agentic pipeline with dynamic page interaction"
       ],
-      category: "Full Stack Web"
+      category: "Agentic AI"
     },
     {
       id: 2,
-      title: "MarketPulse Bot",
-      description: "Automated trading bot with intelligent market analysis and risk management",
-      fullDescription: "MarketPulse Bot is an advanced automated trading system that leverages machine learning algorithms to analyze market trends, execute trades, and manage risk. Built with Python and integrated with multiple trading APIs, it provides automated trading solutions with comprehensive backtesting and performance analytics.",
+      title: "Ragnify",
+      description: "A retrieval-augmented document question-answering system with local-first deployment.",
+      fullDescription: "Built a context-aware PDF Q&A pipeline using FastAPI, FAISS vector search, Hugging Face embeddings, and LangChain, with sub-second retrieval on large documents. The React frontend connects to a multi-provider LLM framework for OpenAI, Anthropic, and Ollama, with a Dockerized backend.",
       image: "project2-placeholder.jpg",
-      technologies: ["Python", "Machine Learning", "Trading APIs", "Data Analysis", "Backtesting"],
-      icons: [<FaPython />, <FaDatabase />, <FaReact />, <FaNodeJs />],
-      github: "https://github.com/Prasannaram2k4/marketpulse-bot",
-      demo: "https://github.com/Prasannaram2k4/marketpulse-bot",
+      technologies: ["Python", "FastAPI", "React.js", "FAISS", "Hugging Face", "LangChain", "Docker"],
+      icons: [<FaPython />, <FaReact />, <FaDatabase />, <FaNodeJs />],
+      github: "https://github.com/Prasannaram2k4",
       features: [
-        "Automated trading execution",
-        "Machine learning market analysis",
-        "Risk management and position sizing",
-        "Comprehensive backtesting framework",
-        "Real-time performance monitoring"
+        "Context-aware PDF question answering",
+        "Sub-second vector retrieval on large documents",
+        "OpenAI, Anthropic, and Ollama provider support",
+        "Dockerized backend and React frontend"
       ],
-      category: "Trading Bot"
+      category: "RAG & LLM Applications"
+    },
+    {
+      id: 3,
+      title: "Insightify",
+      description: "Resume and job-match intelligence with ATS gap analysis and interview preparation.",
+      fullDescription: "Developed an AI-powered resume and job description analyzer with TF-IDF cosine similarity and NLP keyword extraction to surface ATS gaps and provide personalized candidate feedback. Hugging Face transformers generate interview questions, while GitHub Actions supports CI/CD for the containerized FastAPI backend.",
+      image: "project3-placeholder.jpg",
+      technologies: ["FastAPI", "Python", "React.js", "scikit-learn", "Hugging Face", "MongoDB", "Docker"],
+      icons: [<FaPython />, <FaReact />, <FaDatabase />, <FaNodeJs />],
+      github: "https://github.com/Prasannaram2k4",
+      features: [
+        "Resume-to-job similarity scoring using TF-IDF and cosine similarity",
+        "NLP keyword extraction and ATS gap identification",
+        "Personalized candidate feedback",
+        "Automated interview question generation",
+        "Containerized FastAPI backend with GitHub Actions CI/CD"
+      ],
+      category: "AI & Career Intelligence"
+    },
+    {
+      id: 4,
+      title: "MarketPulse",
+      description: "A stock analytics and portfolio intelligence platform with real-time visualization.",
+      fullDescription: "Built a full-stack financial dashboard with React and Recharts for market visualization and portfolio tracking. The Node.js and Express backend uses JWT authentication and REST APIs, with optimized MongoDB indexing that improved query speed by more than 40%.",
+      image: "project4-placeholder.jpg",
+      technologies: ["Node.js", "Express.js", "React.js", "MongoDB", "JWT", "REST APIs", "Recharts"],
+      icons: [<FaNodeJs />, <FaReact />, <SiMongodb />, <SiExpress />],
+      github: "https://github.com/Prasannaram2k4",
+      features: [
+        "Real-time market visualization and portfolio tracking",
+        "Secure JWT authentication",
+        "RESTful backend APIs",
+        "MongoDB indexing improved query speed by 40%+"
+      ],
+      category: "Full-Stack Finance"
     }
   ];
 
@@ -349,7 +380,7 @@ const Projects = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <motion.a
+                  {selectedProject.demo && <motion.a
                     href={selectedProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -359,7 +390,7 @@ const Projects = () => {
                   >
                     <FaGithub className="mr-2" />
                     View Code
-                  </motion.a>
+                  </motion.a>}
                   <motion.a
                     href={selectedProject.demo}
                     target="_blank"
