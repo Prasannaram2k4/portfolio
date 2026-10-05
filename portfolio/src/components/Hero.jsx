@@ -81,7 +81,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-5 text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors"
           >
-            prasannaram978@gmail.com · +91 8778557651
+            prasannaram978@gmail.com
           </motion.a>
           
           <motion.div

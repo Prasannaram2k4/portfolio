@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -172,25 +172,6 @@ const Contact = () => {
                   </div>
                 </motion.div>
 
-                <motion.div
-                  className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300"
-                  whileHover={{ scale: 1.02, x: 5 }}
-                >
-                  <motion.div
-                    className="text-gray-900 dark:text-white mt-1 p-3 bg-gray-100 dark:bg-gray-700 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-gray-600 transition-colors"
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <FaPhone size={20} />
-                  </motion.div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Phone</h4>
-                    <a href="tel:+918778557651" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-lg">
-                      +91 8778557651
-                    </a>
-                  </div>
-                </motion.div>
-                
                 <motion.div 
                   className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300"
                   whileHover={{ scale: 1.02, x: 5 }}
