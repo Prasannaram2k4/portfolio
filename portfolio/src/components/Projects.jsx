@@ -1,414 +1,357 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub, FaTimes, FaReact, FaNodeJs, FaPython, FaDatabase } from 'react-icons/fa';
-import { SiMongodb, SiExpress } from 'react-icons/si';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FaArrowRight, FaCode, FaExternalLinkAlt, FaGithub, FaTimes } from 'react-icons/fa';
+import {
+  SiDocker,
+  SiFastapi,
+  SiHuggingface,
+  SiLangchain,
+  SiMeta,
+  SiMongodb,
+  SiNodedotjs,
+  SiPython,
+  SiReact,
+  SiScikitlearn,
+} from 'react-icons/si';
+
+const projects = [
+  {
+    id: 'lead-discovery',
+    number: '01',
+    title: 'AI Lead Discovery Agent',
+    category: 'Agentic AI · Browser automation',
+    description: 'An autonomous research agent that finds, qualifies, and structures prospect data.',
+    overview:
+      'A browser-automation agent built with Playwright and Llama 3.3 70B. It navigates dynamic pages, classifies useful fields, and returns qualified lead data as clean JSON—without repetitive manual research.',
+    challenge: 'Lead research across dynamic websites is slow, inconsistent, and difficult to scale.',
+    approach:
+      'Combined browser automation with an LLM-powered qualification step in a modular pipeline, then shaped the results into a predictable JSON format.',
+    outcome: 'Delivered a working proof of concept in 10 days while learning the APIs and browser automation from scratch.',
+    features: [
+      'Discovers information across dynamic pages with browser automation',
+      'Uses an LLM to classify and qualify extracted fields',
+      'Returns structured lead records as JSON',
+      'Separates discovery, extraction, and qualification into reusable steps',
+    ],
+    technologies: [
+      { name: 'Python', icon: SiPython },
+      { name: 'Llama 3.3 70B', icon: SiMeta },
+      { name: 'REST APIs', icon: FaCode },
+    ],
+    github: 'https://github.com/Prasannaram2k4/AI-Lead-Discovery-Agent',
+    demo: null,
+    visual: 'leads',
+    accent: 'violet',
+    metric: '10 days',
+    metricLabel: 'proof of concept',
+  },
+  {
+    id: 'ragnify',
+    number: '02',
+    title: 'Ragnify',
+    category: 'Generative AI · Retrieval-augmented generation',
+    description: 'A local-first document assistant that turns long PDFs into searchable conversations.',
+    overview:
+      'A context-aware PDF question-answering system built with FastAPI, FAISS, Hugging Face embeddings, and LangChain. A React interface connects to multiple language-model providers, with a Dockerized backend for a repeatable setup.',
+    challenge: 'Finding a trustworthy answer inside a long document often means searching and reading it page by page.',
+    approach:
+      'Built a retrieval-augmented pipeline that chunks documents, indexes embeddings, retrieves relevant context, and passes that context to a selectable language model.',
+    outcome: 'Sub-second vector retrieval on large documents, with provider options for OpenAI, Anthropic, and Ollama.',
+    features: [
+      'Ask natural-language questions about uploaded PDFs',
+      'Retrieve relevant passages using FAISS vector search',
+      'Choose between OpenAI, Anthropic, and Ollama providers',
+      'Run the backend in a Dockerized environment',
+    ],
+    technologies: [
+      { name: 'Python', icon: SiPython },
+      { name: 'FastAPI', icon: SiFastapi },
+      { name: 'React', icon: SiReact },
+      { name: 'LangChain', icon: SiLangchain },
+      { name: 'Hugging Face', icon: SiHuggingface },
+      { name: 'Docker', icon: SiDocker },
+    ],
+    github: 'https://github.com/Prasannaram2k4/ragnify',
+    demo: 'https://ragnify-gamma.vercel.app',
+    visual: 'ragnify',
+    accent: 'blue',
+    metric: '< 1 sec',
+    metricLabel: 'vector retrieval',
+  },
+  {
+    id: 'insightify',
+    number: '03',
+    title: 'Insightify',
+    category: 'AI · Career intelligence',
+    description: 'Resume-to-role analysis with actionable ATS gaps and interview preparation.',
+    overview:
+      'An AI-powered resume and job-description analyzer. TF-IDF similarity scoring and NLP keyword extraction surface a match score and missing skills; transformer-powered prompts help candidates prepare for interviews.',
+    challenge: 'Candidates need more than a match percentage—they need to understand what to improve and what to prepare.',
+    approach:
+      'Built a FastAPI and React application that compares resume and job-description text, highlights keyword gaps, and generates interview questions with selectable models.',
+    outcome: 'Turns a resume and job description into a clear match score, gap analysis, and practical next steps.',
+    features: [
+      'Score resume-to-role similarity with TF-IDF and cosine similarity',
+      'Extract keywords and identify ATS gaps',
+      'Generate tailored interview questions',
+      'Optionally save analysis history to MongoDB',
+      'Run a containerized FastAPI backend with GitHub Actions CI/CD',
+    ],
+    technologies: [
+      { name: 'Python', icon: SiPython },
+      { name: 'FastAPI', icon: SiFastapi },
+      { name: 'React', icon: SiReact },
+      { name: 'scikit-learn', icon: SiScikitlearn },
+      { name: 'Hugging Face', icon: SiHuggingface },
+      { name: 'MongoDB', icon: SiMongodb },
+    ],
+    github: 'https://github.com/Prasannaram2k4/Insightify',
+    demo: 'https://insightify-nu.vercel.app',
+    visual: 'insightify',
+    accent: 'orange',
+    metric: 'ATS',
+    metricLabel: 'gap analysis',
+  },
+  {
+    id: 'marketpulse',
+    number: '04',
+    title: 'MarketPulse',
+    category: 'Full stack · Financial analytics',
+    description: 'A market and portfolio dashboard for following financial data at a glance.',
+    overview:
+      'A full-stack finance platform with React and Recharts visualizations, portfolio tracking, and a Node.js and Express API. JWT authentication protects user access, while MongoDB indexing keeps common queries fast.',
+    challenge: 'Market data and portfolio activity are easier to act on when they are visible together in one responsive dashboard.',
+    approach:
+      'Built a React dashboard backed by REST APIs, then improved data access with targeted MongoDB indexes and added JWT-based authentication.',
+    outcome: 'Optimized MongoDB indexes improved query speed by more than 40%.',
+    features: [
+      'Visualize market activity and track a portfolio',
+      'Secure account access with JWT authentication',
+      'Connect a React interface to RESTful backend APIs',
+      'Improve query performance with MongoDB indexing',
+    ],
+    technologies: [
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'React', icon: SiReact },
+      { name: 'MongoDB', icon: SiMongodb },
+    ],
+    github: 'https://github.com/Prasannaram2k4/MarketPulse',
+    demo: 'https://marketpulse-vercel-eight.vercel.app',
+    visual: 'marketpulse',
+    accent: 'green',
+    metric: '40%+',
+    metricLabel: 'faster queries',
+  },
+];
+
+const ProjectPreview = ({ project }) => (
+  <div className={`project-preview project-preview--${project.visual}`} aria-hidden="true">
+    <div className="project-preview__window">
+      <div className="project-preview__toolbar">
+        <span className="project-preview__dots"><i /><i /><i /></span>
+        <span className="project-preview__address">{project.title}</span>
+        <span className="project-preview__window-mark">↗</span>
+      </div>
+      <div className="project-preview__content">
+        {project.visual === 'leads' && (
+          <>
+            <div className="preview-heading"><span>Prospect intelligence</span><b>● Agent online</b></div>
+            <div className="preview-search">⌕ &nbsp; SaaS companies · United States</div>
+            {['Northstar Systems', 'Orbit Analytics', 'Cedar Labs'].map((name, index) => (
+              <div className="preview-lead" key={name}>
+                <span className="preview-avatar">{name.charAt(0)}</span>
+                <span className="preview-lead__name">{name}<small>{['Technology', 'Data & AI', 'Developer tools'][index]}</small></span>
+                <span className="preview-score">{[96, 89, 84][index]}%</span>
+              </div>
+            ))}
+          </>
+        )}
+        {project.visual === 'ragnify' && (
+          <>
+            <div className="preview-heading"><span>Document workspace</span><b>PDF indexed</b></div>
+            <div className="preview-document"><span>▤</span><span>Research-notes.pdf<small>42 pages · Indexed just now</small></span></div>
+            <div className="preview-chat preview-chat--user">What are the key findings?</div>
+            <div className="preview-chat preview-chat--answer">The report highlights three key findings from the latest analysis…<small>Sources · pages 08, 14, 27</small></div>
+          </>
+        )}
+        {project.visual === 'insightify' && (
+          <>
+            <div className="preview-heading"><span>Role match report</span><b>Analysis complete</b></div>
+            <div className="preview-score-panel"><div className="preview-ring"><span>86<small>%</small></span></div><span>Strong match<small>Senior software engineer</small></span></div>
+            <div className="preview-progress"><span>Relevant experience</span><i><b style={{ width: '88%' }} /></i></div>
+            <div className="preview-progress"><span>Role keywords</span><i><b style={{ width: '66%' }} /></i></div>
+            <div className="preview-gap">＋ &nbsp; 3 skills to highlight</div>
+          </>
+        )}
+        {project.visual === 'marketpulse' && (
+          <>
+            <div className="preview-heading"><span>Portfolio overview</span><b>Market open</b></div>
+            <div className="preview-value">$24,680.50 <small>↗ 8.24% this month</small></div>
+            <svg className="preview-chart" viewBox="0 0 360 90" preserveAspectRatio="none">
+              <defs><linearGradient id={`market-fill-${project.id}`} x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stopColor="currentColor" stopOpacity=".25" /><stop offset="100%" stopColor="currentColor" stopOpacity="0" /></linearGradient></defs>
+              <path d="M0 72 C22 64 26 71 44 56 S74 62 91 44 S122 53 144 37 S177 48 197 28 S224 38 244 25 S269 40 289 17 S328 28 360 6 V90 H0Z" fill={`url(#market-fill-${project.id})`} />
+              <path d="M0 72 C22 64 26 71 44 56 S74 62 91 44 S122 53 144 37 S177 48 197 28 S224 38 244 25 S269 40 289 17 S328 28 360 6" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            </svg>
+            <div className="preview-market-footer"><span>Portfolio performance</span><span>1D &nbsp; 1W &nbsp; <b>1M</b> &nbsp; 1Y</span></div>
+          </>
+        )}
+      </div>
+    </div>
+    <span className="project-preview__index">{project.number} / SELECTED WORK</span>
+  </div>
+);
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "AI Lead Discovery Agent",
-      description: "An autonomous scraping and intelligence pipeline that discovers and qualifies leads.",
-      fullDescription: "Built a browser-automation agent using Playwright and Llama 3.3 70B to discover leads, classify fields, and structure results as JSON without manual intervention. Delivered a production-ready proof of concept in 10 days while learning the APIs and browser automation from scratch.",
-      image: "project1-placeholder.jpg",
-      technologies: ["Python", "Playwright", "Llama 3.3 70B", "REST APIs", "Browser Automation"],
-      icons: [<FaPython />, <FaDatabase />, <FaGithub />, <FaExternalLinkAlt />],
-      github: "https://github.com/Prasannaram2k4",
-      features: [
-        "Autonomous lead discovery through Playwright browser automation",
-        "LLM-powered field classification and qualification",
-        "Structured lead extraction into JSON",
-        "Modular agentic pipeline with dynamic page interaction"
-      ],
-      category: "Agentic AI"
-    },
-    {
-      id: 2,
-      title: "Ragnify",
-      description: "A retrieval-augmented document question-answering system with local-first deployment.",
-      fullDescription: "Built a context-aware PDF Q&A pipeline using FastAPI, FAISS vector search, Hugging Face embeddings, and LangChain, with sub-second retrieval on large documents. The React frontend connects to a multi-provider LLM framework for OpenAI, Anthropic, and Ollama, with a Dockerized backend.",
-      image: "project2-placeholder.jpg",
-      technologies: ["Python", "FastAPI", "React.js", "FAISS", "Hugging Face", "LangChain", "Docker"],
-      icons: [<FaPython />, <FaReact />, <FaDatabase />, <FaNodeJs />],
-      github: "https://github.com/Prasannaram2k4",
-      features: [
-        "Context-aware PDF question answering",
-        "Sub-second vector retrieval on large documents",
-        "OpenAI, Anthropic, and Ollama provider support",
-        "Dockerized backend and React frontend"
-      ],
-      category: "RAG & LLM Applications"
-    },
-    {
-      id: 3,
-      title: "Insightify",
-      description: "Resume and job-match intelligence with ATS gap analysis and interview preparation.",
-      fullDescription: "Developed an AI-powered resume and job description analyzer with TF-IDF cosine similarity and NLP keyword extraction to surface ATS gaps and provide personalized candidate feedback. Hugging Face transformers generate interview questions, while GitHub Actions supports CI/CD for the containerized FastAPI backend.",
-      image: "project3-placeholder.jpg",
-      technologies: ["FastAPI", "Python", "React.js", "scikit-learn", "Hugging Face", "MongoDB", "Docker"],
-      icons: [<FaPython />, <FaReact />, <FaDatabase />, <FaNodeJs />],
-      github: "https://github.com/Prasannaram2k4",
-      features: [
-        "Resume-to-job similarity scoring using TF-IDF and cosine similarity",
-        "NLP keyword extraction and ATS gap identification",
-        "Personalized candidate feedback",
-        "Automated interview question generation",
-        "Containerized FastAPI backend with GitHub Actions CI/CD"
-      ],
-      category: "AI & Career Intelligence"
-    },
-    {
-      id: 4,
-      title: "MarketPulse",
-      description: "A stock analytics and portfolio intelligence platform with real-time visualization.",
-      fullDescription: "Built a full-stack financial dashboard with React and Recharts for market visualization and portfolio tracking. The Node.js and Express backend uses JWT authentication and REST APIs, with optimized MongoDB indexing that improved query speed by more than 40%.",
-      image: "project4-placeholder.jpg",
-      technologies: ["Node.js", "Express.js", "React.js", "MongoDB", "JWT", "REST APIs", "Recharts"],
-      icons: [<FaNodeJs />, <FaReact />, <SiMongodb />, <SiExpress />],
-      github: "https://github.com/Prasannaram2k4",
-      features: [
-        "Real-time market visualization and portfolio tracking",
-        "Secure JWT authentication",
-        "RESTful backend APIs",
-        "MongoDB indexing improved query speed by 40%+"
-      ],
-      category: "Full-Stack Finance"
-    }
-  ];
+  useEffect(() => {
+    if (!selectedProject) return undefined;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setSelectedProject(null);
+    };
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20,
-      scale: 0.98
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    },
-    hover: {
-      y: -10,
-      scale: 1.02,
-      boxShadow: "0 20px 40px rgba(255,255,255,0.1)",
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const modalVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-      y: 30
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.95,
-      y: 30,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-    exit: { opacity: 0 }
-  };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedProject]);
 
   return (
-    <motion.section 
-      id="projects" 
-      className="section-padding bg-gray-100 dark:bg-black relative overflow-hidden transition-colors duration-300"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
-      variants={containerVariants}
-    >
-      {/* Background Animation */}
-      <motion.div 
-        className="absolute inset-0 -z-10"
-        animate={{
-          background: [
-            "radial-gradient(circle at 30% 20%, rgba(100,100,100,0.02) 0%, transparent 50%)",
-            "radial-gradient(circle at 70% 80%, rgba(100,100,100,0.02) 0%, transparent 50%)",
-            "radial-gradient(circle at 20% 70%, rgba(100,100,100,0.02) 0%, transparent 50%)",
-          ]
-        }}
-        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
-      />
+    <section id="projects" className="section-padding project-showcase relative overflow-hidden bg-gray-50 dark:bg-[#08090b] transition-colors duration-300">
+      <div className="project-showcase__glow" aria-hidden="true" />
+      <div className="container relative z-10 mx-auto">
+        <motion.header
+          className="project-showcase__header"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+        >
+          <p className="project-eyebrow">A FEW THINGS I’VE BUILT</p>
+          <h2 className="text-gray-900 dark:text-white">Ideas, meet execution.</h2>
+          <p className="project-showcase__intro">
+            A closer look at the products, experiments, and engineering decisions behind my work.
+          </p>
+          <div className="project-showcase__count"><span>04</span> PROJECTS <i /> AI · FULL STACK · DATA</div>
+        </motion.header>
 
-      <div className="container mx-auto relative z-10">
-        <motion.div className="text-center mb-16">
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-light-primary dark:text-dark-primary"
-            variants={cardVariants}
-          >
-            Featured Projects
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-transparent via-light-primary dark:via-dark-primary to-transparent mx-auto mb-8"
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-          <motion.p
-            className="text-light-secondary dark:text-dark-secondary text-lg max-w-2xl mx-auto"
-            variants={cardVariants}
-          >
-            Explore my latest projects showcasing modern web development, 
-            mobile applications, and innovative solutions.
-          </motion.p>
-        </motion.div>
-
-        {/* Horizontal Project Cards */}
-        <div className="space-y-8 max-w-6xl mx-auto">
+        <div className="project-showcase__grid">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.id}
-              variants={cardVariants}
-              whileHover="hover"
-              className={`group cursor-pointer ${
-                index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-              } flex flex-col lg:flex-row bg-gradient-to-br from-light-card/80 to-gray-50/80 dark:from-gray-800/40 dark:to-gray-900/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-light-primary/20 dark:border-primary/20 hover:border-light-primary/40 dark:hover:border-primary/40 transition-all duration-500`}
-              onClick={() => setSelectedProject(project)}
+              className={`project-card project-card--${project.accent}`}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.55, delay: (index % 2) * 0.1, ease: 'easeOut' }}
             >
-              {/* Project Image */}
-              <div className="lg:w-1/2 h-64 lg:h-80 bg-gradient-to-br from-light-primary/10 to-gray-300/20 dark:from-primary/20 dark:to-gray-700/20 relative overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-light-primary/5 to-transparent dark:from-primary/10 dark:to-transparent"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-6xl mb-4 text-light-primary/60 dark:text-primary/60"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {project.icons[0]}
-                    </motion.div>
-                    <p className="text-light-secondary dark:text-secondary text-sm">Click to view details</p>
-                  </div>
+              <button
+                type="button"
+                className="project-card__preview-button"
+                onClick={() => setSelectedProject(project)}
+                aria-label={`View ${project.title} case study`}
+              >
+                <ProjectPreview project={project} />
+              </button>
+              <div className="project-card__body">
+                <div className="project-card__meta"><span>{project.category}</span><span>{project.number}</span></div>
+                <h3>{project.title}</h3>
+                <p className="project-card__description">{project.description}</p>
+                <div className="project-card__metric"><strong>{project.metric}</strong><span>{project.metricLabel}</span></div>
+                <div className="project-card__tech" aria-label="Technologies">
+                  {project.technologies.slice(0, 4).map(({ name, icon: Icon }) => (
+                    <span className="project-tech" key={name} title={name}>
+                      <Icon aria-hidden="true" /><span>{name}</span>
+                    </span>
+                  ))}
+                  {project.technologies.length > 4 && <span className="project-tech__more">+{project.technologies.length - 4}</span>}
+                </div>
+                <div className="project-card__actions">
+                  <button type="button" className="project-details-link" onClick={() => setSelectedProject(project)}>
+                    Case study <FaArrowRight aria-hidden="true" />
+                  </button>
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-demo-link">
+                      Live demo <FaExternalLinkAlt aria-hidden="true" />
+                    </a>
+                  )}
                 </div>
               </div>
-
-              {/* Project Content */}
-              <div className="lg:w-1/2 p-8 flex flex-col justify-center">
-                <motion.div
-                  className="mb-4"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <span className="text-light-primary/70 dark:text-primary/70 text-sm font-semibold tracking-wider uppercase">
-                    {project.category}
-                  </span>
-                </motion.div>
-
-                <motion.h3 
-                  className="text-2xl lg:text-3xl font-bold text-light-primary dark:text-primary mb-4 group-hover:text-light-secondary dark:group-hover:text-white transition-colors"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  {project.title}
-                </motion.h3>
-
-                <motion.p 
-                  className="text-light-secondary dark:text-secondary text-lg mb-6 leading-relaxed"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  {project.description}
-                </motion.p>
-
-                <motion.div 
-                  className="flex flex-wrap gap-3 mb-6"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                >
-                  {project.icons.slice(0, 4).map((icon, iconIndex) => (
-                    <motion.div
-                      key={iconIndex}
-                      className="p-2 bg-light-primary/10 dark:bg-primary/10 rounded-lg text-light-primary/70 dark:text-primary/70 hover:text-light-primary dark:hover:text-primary hover:bg-light-primary/20 dark:hover:bg-primary/20 transition-all duration-300"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                    >
-                      {icon}
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                <motion.div 
-                  className="text-light-primary/70 dark:text-primary/70 text-sm font-medium flex items-center"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                >
-                  <span className="mr-2">Click for details</span>
-                  <motion.div
-                    animate={{ x: [0, 3, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    →
-                  </motion.div>
-                </motion.div>
-              </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
 
-      {/* Project Modal */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            variants={overlayVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            onClick={() => setSelectedProject(null)}
+            className="project-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) setSelectedProject(null);
+            }}
           >
-            <motion.div
-              className="bg-gradient-to-br from-light-card to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-light-primary/30 dark:border-primary/30"
-              variants={modalVariants}
-              onClick={(e) => e.stopPropagation()}
+            <motion.section
+              className={`project-modal__panel project-card--${selectedProject.accent}`}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-modal-title"
+              initial={{ opacity: 0, y: 20, scale: 0.985 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.985 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
-              {/* Modal Header */}
-              <div className="flex justify-between items-start p-8 border-b border-light-primary/20 dark:border-primary/20">
-                <div>
-                  <span className="text-light-primary/70 dark:text-primary/70 text-sm font-semibold tracking-wider uppercase">
-                    {selectedProject.category}
-                  </span>
-                  <h3 className="text-3xl font-bold text-light-primary dark:text-primary mt-2">
-                    {selectedProject.title}
-                  </h3>
-                </div>
-                <motion.button
-                  onClick={() => setSelectedProject(null)}
-                  className="text-light-secondary dark:text-secondary hover:text-light-primary dark:hover:text-primary transition-colors p-2"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaTimes size={24} />
-                </motion.button>
+              <div className="project-modal__top">
+                <div><p className="project-eyebrow">{selectedProject.category}</p><span>CASE STUDY &nbsp; / &nbsp; {selectedProject.number}</span></div>
+                <button type="button" className="project-modal__close" onClick={() => setSelectedProject(null)} aria-label="Close project details"><FaTimes /></button>
               </div>
-
-              {/* Modal Content */}
-              <div className="p-8 space-y-8">
-                <div>
-                  <h4 className="text-xl font-semibold text-light-primary dark:text-primary mb-4">About This Project</h4>
-                  <p className="text-light-secondary dark:text-secondary text-lg leading-relaxed">
-                    {selectedProject.fullDescription}
-                  </p>
+              <div className="project-modal__content">
+                <ProjectPreview project={selectedProject} />
+                <h3 id="project-modal-title">{selectedProject.title}</h3>
+                <p className="project-modal__lead">{selectedProject.overview}</p>
+                <div className="project-modal__metrics">
+                  <span><strong>{selectedProject.metric}</strong>{selectedProject.metricLabel}</span>
+                  <span><strong>{selectedProject.technologies.length}</strong>core technologies</span>
+                  <span><strong>{selectedProject.demo ? 'Live' : 'Open source'}</strong>{selectedProject.demo ? 'try the project' : 'explore the code'}</span>
                 </div>
-
-                <div>
-                  <h4 className="text-xl font-semibold text-light-primary dark:text-primary mb-4">Key Features</h4>
-                  <ul className="space-y-2">
-                    {selectedProject.features.map((feature, index) => (
-                      <motion.li
-                        key={index}
-                        className="flex items-center text-light-secondary dark:text-secondary"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <span className="text-light-primary dark:text-primary mr-3">•</span>
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
+                <div className="project-modal__story">
+                  <div><h4>The challenge</h4><p>{selectedProject.challenge}</p></div>
+                  <div><h4>What I built</h4><p>{selectedProject.approach}</p></div>
+                  <div><h4>The outcome</h4><p>{selectedProject.outcome}</p></div>
                 </div>
-
-                <div>
-                  <h4 className="text-xl font-semibold text-light-primary dark:text-primary mb-4">Technologies Used</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {selectedProject.technologies.map((tech, index) => (
-                      <motion.span
-                        key={index}
-                        className="px-4 py-2 bg-light-primary/10 dark:bg-primary/10 text-light-primary dark:text-primary rounded-lg text-sm font-medium"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
+                <div className="project-modal__features">
+                  <h4>Highlights</h4>
+                  <ul>{selectedProject.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  {selectedProject.demo && <motion.a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center px-6 py-3 bg-gray-300 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600 text-light-primary dark:text-primary rounded-lg transition-colors font-medium"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaGithub className="mr-2" />
-                    View Code
-                  </motion.a>}
-                  <motion.a
-                    href={selectedProject.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center px-6 py-3 bg-light-primary hover:bg-light-secondary dark:bg-primary dark:hover:bg-white text-light-bg dark:text-dark rounded-lg transition-colors font-medium"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaExternalLinkAlt className="mr-2" />
-                    Live Demo
-                  </motion.a>
+                <div className="project-modal__stack">
+                  <h4>Built with</h4>
+                  <div>{selectedProject.technologies.map(({ name, icon: Icon }) => (
+                    <span className="project-stack-item" key={name}><Icon aria-hidden="true" />{name}</span>
+                  ))}</div>
+                </div>
+                <div className="project-modal__actions">
+                  {selectedProject.demo && (
+                    <a className="project-action project-action--primary" href={selectedProject.demo} target="_blank" rel="noopener noreferrer">
+                      <FaExternalLinkAlt aria-hidden="true" /> Open live demo
+                    </a>
+                  )}
+                  <a className="project-action project-action--secondary" href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                    <FaGithub aria-hidden="true" /> View source code
+                  </a>
                 </div>
               </div>
-            </motion.div>
+            </motion.section>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.section>
+    </section>
   );
 };
 
