@@ -6,15 +6,33 @@ import {
   SiPython, 
   SiReact, 
   SiNodedotjs, 
+  SiExpress,
   SiDjango, 
   SiMongodb, 
+  SiMysql,
   SiGit, 
+  SiGithubactions,
   SiDocker, 
-  SiCss3, 
-  SiTypescript, 
   SiPostgresql,
-  SiOpenjdk 
+  SiOpenjdk,
+  SiCplusplus,
+  SiFastapi,
+  SiFlask,
+  SiHuggingface,
+  SiLangchain,
+  SiScikitlearn,
+  SiNumpy,
+  SiPandas,
+  SiFirebase,
+  SiRedis,
+  SiFigma,
+  SiLinux,
+  SiNginx,
+  SiPostman,
+  SiRender,
+  SiVercel
 } from 'react-icons/si';
+import { FaCloud, FaCode, FaRobot } from 'react-icons/fa';
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -37,7 +55,7 @@ const Skills = () => {
         { name: 'Python', icon: SiPython },
         { name: 'JavaScript (ES6+)', icon: SiJavascript },
         { name: 'Java', icon: SiOpenjdk },
-        { name: 'C++', icon: SiOpenjdk },
+        { name: 'C++', icon: SiCplusplus },
         { name: 'SQL', icon: SiPostgresql },
       ]
     },
@@ -50,9 +68,9 @@ const Skills = () => {
       skills: [
         { name: 'React.js', icon: SiReact },
         { name: 'Node.js', icon: SiNodedotjs },
-        { name: 'Express.js', icon: SiNodedotjs },
-        { name: 'FastAPI', icon: SiPython },
-        { name: 'Flask', icon: SiPython },
+        { name: 'Express.js', icon: SiExpress },
+        { name: 'FastAPI', icon: SiFastapi },
+        { name: 'Flask', icon: SiFlask },
         { name: 'Django', icon: SiDjango },
       ]
     },
@@ -69,14 +87,14 @@ const Skills = () => {
         { name: 'Prompt Engineering', icon: SiPython },
         { name: 'NLP', icon: SiPython },
         { name: 'Vector Search', icon: SiPython },
-        { name: 'Hugging Face', icon: SiPython },
-        { name: 'Fine-tuning', icon: SiPython },
+        { name: 'Hugging Face', icon: SiHuggingface },
+        { name: 'Fine-tuning', icon: SiHuggingface },
         { name: 'Embeddings', icon: SiPython },
-        { name: 'LangChain', icon: SiPython },
+        { name: 'LangChain', icon: SiLangchain },
         { name: 'FAISS', icon: SiPython },
-        { name: 'scikit-learn', icon: SiPython },
-        { name: 'NumPy', icon: SiPython },
-        { name: 'Pandas', icon: SiPython },
+        { name: 'scikit-learn', icon: SiScikitlearn },
+        { name: 'NumPy', icon: SiNumpy },
+        { name: 'Pandas', icon: SiPandas },
       ]
     },
     {
@@ -88,9 +106,9 @@ const Skills = () => {
       skills: [
         { name: 'MongoDB', icon: SiMongodb },
         { name: 'PostgreSQL', icon: SiPostgresql },
-        { name: 'MySQL', icon: SiPostgresql },
-        { name: 'Firebase', icon: SiReact },
-        { name: 'Redis', icon: SiMongodb },
+        { name: 'MySQL', icon: SiMysql },
+        { name: 'Firebase', icon: SiFirebase },
+        { name: 'Redis', icon: SiRedis },
       ]
     },
     {
@@ -101,12 +119,12 @@ const Skills = () => {
       borderColor: "border-gray-400",
       skills: [
         { name: 'Docker', icon: SiDocker },
-        { name: 'GitHub Actions', icon: SiGit },
-        { name: 'Vercel', icon: SiReact },
-        { name: 'Render', icon: SiNodedotjs },
-        { name: 'Nginx', icon: SiNodedotjs },
-        { name: 'AWS EC2', icon: SiDocker },
-        { name: 'AWS S3', icon: SiDocker },
+        { name: 'GitHub Actions', icon: SiGithubactions },
+        { name: 'Vercel', icon: SiVercel },
+        { name: 'Render', icon: SiRender },
+        { name: 'Nginx', icon: SiNginx },
+        { name: 'AWS EC2', icon: FaCloud },
+        { name: 'AWS S3', icon: FaCloud },
       ]
     },
     {
@@ -117,11 +135,11 @@ const Skills = () => {
       borderColor: "border-gray-400",
       skills: [
         { name: 'Git', icon: SiGit },
-        { name: 'Postman', icon: SiJavascript },
-        { name: 'Playwright', icon: SiReact },
-        { name: 'Figma', icon: SiCss3 },
-        { name: 'Linux', icon: SiOpenjdk },
-        { name: 'VS Code', icon: SiTypescript },
+        { name: 'Postman', icon: SiPostman },
+        { name: 'Playwright', icon: FaRobot },
+        { name: 'Figma', icon: SiFigma },
+        { name: 'Linux', icon: SiLinux },
+        { name: 'VS Code', icon: FaCode },
       ]
     }
   ], []);
@@ -211,17 +229,7 @@ const Skills = () => {
             className="lg:w-1/2 space-y-8"
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            whileInView={{ 
-              opacity: inView ? 1 : 0,
-              x: inView ? [0, -3, 3, -2, 2, 0] : [-50, 0],
-              scale: inView ? [1, 1.01, 0.99, 1] : [0.9, 1]
-            }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ 
-              opacity: { duration: 0.8 },
-              x: { duration: 2, repeat: inView ? Infinity : 0, repeatType: "loop" },
-              scale: { duration: 3, repeat: inView ? Infinity : 0, repeatType: "reverse" }
-            }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {/* Description Text */}
             <div className="space-y-6">
@@ -300,18 +308,7 @@ const Skills = () => {
             className="lg:w-1/2"
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            whileInView={{ 
-              opacity: inView ? 1 : 0,
-              x: inView ? [0, 3, -3, 2, -2, 0] : [50, 0],
-              scale: inView ? [1, 1.01, 0.99, 1.01, 0.99, 1] : [0.9, 1]
-            }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ 
-              opacity: { duration: 0.8 },
-              x: { duration: 2.5, repeat: inView ? Infinity : 0, repeatType: "loop" },
-              scale: { duration: 4, repeat: inView ? Infinity : 0, repeatType: "reverse" }
-            }}
-            ref={ref}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -327,23 +324,11 @@ const Skills = () => {
                     key={skill.name}
                     className="group relative cursor-pointer"
                     initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                    whileInView={{ 
-                      opacity: inView ? 1 : 0, 
-                      y: inView ? 0 : 50, 
-                      scale: inView ? 1 : 0.8,
-                      rotateX: inView ? [0, 2, -2, 0] : 0
-                    }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: index * 0.1,
-                      rotateX: { duration: 3, repeat: inView ? Infinity : 0, repeatType: "loop" }
-                    }}
+                    animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50, scale: inView ? 1 : 0.8 }}
+                    transition={{ duration: 0.45, delay: index * 0.06 }}
                     whileHover={{ 
-                      scale: 1.08,
-                      y: -5,
-                      rotateX: 5,
-                      rotateY: 5,
+                      scale: 1.04,
+                      y: -4,
                       transition: { duration: 0.2 }
                     }}
                   >
@@ -351,38 +336,16 @@ const Skills = () => {
                       {/* Subtle glow effect on hover */}
                       <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-sm" />
                       
-                      {/* Floating glow orb */}
+                      {/* Subtle hover accent */}
                       <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <motion.div
-                          className="w-full h-full bg-blue-600 rounded-full"
-                          animate={{ 
-                            scale: [1, 1.5, 1],
-                            opacity: [0.5, 1, 0.5]
-                          }}
-                          transition={{ 
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }}
-                        />
+                        <div className="w-full h-full bg-blue-600 rounded-full" />
                       </div>
 
                       {/* Icon */}
                       <div className="flex flex-col items-center justify-center h-full">
-                        <motion.div 
+                        <motion.div
                           className="text-4xl mb-3 text-white group-hover:text-blue-400 transition-colors duration-300 drop-shadow-lg"
-                          whileHover={{ 
-                            x: [-1, 1, -1, 1, 0],
-                            y: [-1, 1, -1, 1, 0],
-                            scale: [1, 1.1, 1],
-                            filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"],
-                            transition: { 
-                              x: { duration: 0.2 },
-                              y: { duration: 0.2 },
-                              scale: { duration: 0.3 },
-                              filter: { duration: 0.3 }
-                            }
-                          }}
+                          whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
                         >
                           {React.createElement(skill.icon, { className: "w-10 h-10" })}
                         </motion.div>
@@ -393,17 +356,6 @@ const Skills = () => {
 
                       {/* Animated border */}
                       <div className="absolute inset-0 rounded-2xl border-2 border-blue-500 opacity-0 group-hover:opacity-50 transition-opacity duration-300">
-                        <motion.div
-                          className="absolute inset-0 rounded-2xl border-2 border-blue-500"
-                          initial={{ rotate: 0 }}
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                          style={{
-                            background: 'conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent)',
-                            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                            maskComposite: 'xor'
-                          }}
-                        />
                       </div>
                     </div>
                   </motion.div>
